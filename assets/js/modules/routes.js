@@ -6,6 +6,9 @@ const ROUTES = {
         USERS : {
             0: 'usuarios/gestor',
             1: 'usuarios/logout'
+        },
+        CATEGORIES : {
+            0: 'categorias'
         }
     },
     RESOURCES: {

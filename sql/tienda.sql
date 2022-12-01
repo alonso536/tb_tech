@@ -64,3 +64,68 @@ CREATE TABLE lineas_pedidos(
 )ENGINE=InnoDb;
 
 drop database tb_tech;
+
+USE tb_tech;
+
+CREATE TABLE subcategorias(
+    id INT NOT NULL auto_increment,
+    nombre VARCHAR(25) NOT NULL,
+    categoria_id INT NOT NULL,
+    CONSTRAINT pk_subcategorias PRIMARY KEY(id),
+    CONSTRAINT fk_categoria_subcategoria FOREIGN KEY(categoria_id) REFERENCES categorias(id)
+)ENGINE=InnoDb;
+
+USE tb_tech;
+
+INSERT INTO categorias VALUES(null, 'Computadores');
+INSERT INTO categorias VALUES(null, 'Procesadores');
+INSERT INTO categorias VALUES(null, 'Placas Madres');
+INSERT INTO categorias VALUES(null, 'Memorias RAM');
+INSERT INTO categorias VALUES(null, 'Almacenamiento');
+INSERT INTO categorias VALUES(null, 'Tarjetas Graficas');
+INSERT INTO categorias VALUES(null, 'Fuentes de Poder');
+INSERT INTO categorias VALUES(null, 'Gabinetes');
+INSERT INTO categorias VALUES(null, 'Refrigeracion');
+INSERT INTO categorias VALUES(null, 'Perifericos');
+
+USE tb_tech;
+
+INSERT INTO subcategorias VALUES(null, 'Escritorio', 1);
+INSERT INTO subcategorias VALUES(null, 'Notebooks', 1);
+INSERT INTO subcategorias VALUES(null, 'Tablets', 1);
+INSERT INTO subcategorias VALUES(null, 'Celulares', 1);
+
+INSERT INTO subcategorias VALUES(null, 'Procesadores Intel', 2);
+INSERT INTO subcategorias VALUES(null, 'Procesadores AMD', 2);
+
+INSERT INTO subcategorias VALUES(null, 'Placas Madres Intel', 3);
+INSERT INTO subcategorias VALUES(null, 'Placas Madres AMD', 3);
+
+INSERT INTO subcategorias VALUES(null, 'Memorias PC', 4);
+INSERT INTO subcategorias VALUES(null, 'Memorias Notebook', 4);
+
+INSERT INTO subcategorias VALUES(null, 'Discos duros', 5);
+INSERT INTO subcategorias VALUES(null, 'SSD', 5);
+INSERT INTO subcategorias VALUES(null, 'Discos Externos', 5);
+INSERT INTO subcategorias VALUES(null, 'SSD Externos', 5);
+INSERT INTO subcategorias VALUES(null, 'Pendrives', 5);
+
+INSERT INTO subcategorias VALUES(null, 'Tarjetas Graficas Nvidia', 6);
+INSERT INTO subcategorias VALUES(null, 'Tarjetas Graficas AMD', 6);
+
+INSERT INTO subcategorias VALUES(null, 'Genericas', 7);
+INSERT INTO subcategorias VALUES(null, 'Certificadas', 7);
+
+INSERT INTO subcategorias VALUES(null, 'Sin Fuente', 8);
+INSERT INTO subcategorias VALUES(null, 'Con Fuente', 8);
+
+INSERT INTO subcategorias VALUES(null, 'Disipadores', 9);
+INSERT INTO subcategorias VALUES(null, 'Refrigeraciones Liquidas', 9);
+INSERT INTO subcategorias VALUES(null, 'Ventiladores', 9);
+INSERT INTO subcategorias VALUES(null, 'Insumos Refrigeracion', 9);
+
+INSERT INTO subcategorias VALUES(null, 'Teclados', 10);
+INSERT INTO subcategorias VALUES(null, 'Mouse', 10);
+INSERT INTO subcategorias VALUES(null, 'Monitores', 10);
+INSERT INTO subcategorias VALUES(null, 'Mouse Pads', 10);
+INSERT INTO subcategorias VALUES(null, 'Audifonos', 10);

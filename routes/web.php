@@ -10,7 +10,13 @@ Route::get("/registro", Controller::class."@registro");
 Route::get("/usuarios/gestor", UsuariosController::class."@userGestor");
 Route::get("/usuarios/logout", UsuariosController::class."@userLogOut");
 
-//resources
+//categorias
+Route::get("/categorias", function() {
+    $controller = new CategoriasController();
+    echo $controller->getCategories()->json();
+});
+
+//recursos
 Route::get("/resources/expresiones", Controller::class."@sendRegExp");
 
 //formularios

@@ -11,6 +11,11 @@
 
     document.addEventListener('DOMContentLoaded', () => {
         view = (main.getAttribute('data-view') === '') ? 0 : main.getAttribute('data-view');
+
+        if(view == 0) {
+            getCategories();
+        }
+
         changeView(ROUTES.VIEWS[view])
         .then((response) => {
             main.innerHTML = '';
@@ -28,6 +33,9 @@
                 main.setAttribute('data-view', i);
 
                 switch(Number(main.getAttribute('data-view'))) {
+                    case 0:
+                        getCategories();
+                        break;
                     case 1:
                         formLoginValidate();
                         break;
