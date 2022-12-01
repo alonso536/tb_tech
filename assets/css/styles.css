@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Saira:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+    font-family: 'Saira', sans-serif;
+}
+
+h1 {
+    font-weight: 800;
+    font-size: 4rem;
+}
+
+#form-register > p {
+    display: none;
+}
+
+#form-login > p {
+    display: none;
+}
+
+.subtitle {
+    font-weight: 800;
+    font-size: 2rem;
+}
+
+.navbar {
+    padding: 2rem;
+}
+
+.navbar-collapse {
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.nav-link {
+    cursor: pointer;
+}
+
+.link {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 767px) {
+    #title {
+        justify-content: center;
+    }
+
+    .navbar-brand {
+        margin: 0px;
+    }
+}
