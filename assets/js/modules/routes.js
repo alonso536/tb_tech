@@ -8,7 +8,12 @@ const ROUTES = {
             1: 'usuarios/logout'
         },
         CATEGORIES : {
-            0: 'categorias'
+            0: 'categorias',
+            1: 'subcategorias'
+        },
+        PRODUCTS : {
+            0: 'productos',
+            1: 'productos/categorias'
         }
     },
     RESOURCES: {

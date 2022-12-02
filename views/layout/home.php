@@ -40,7 +40,41 @@
                 </div>
             </aside>
             <article class="col-sm-12 col-md-8">
-                <div class="row">
+                <div id="productos" class="row">
+                    <!--<article class="col-sm-12 col-lg-6 g-3">
+                        <div class="card shadow-sm">
+                            <div class="card-header bg-primary bg-gradient bg-opacity-10">
+                                <h5 class="card-title text-primary mt-2">Card Title</h5>
+                            </div>
+                            <img src="..." class="card-img-top" alt="..." />
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><b>Precio Oferta:</b> #####</li>
+                                <li class="list-group-item"><b>Precio Normal:</b> #####</li>
+                                <li class="list-group-item"><b>Stock:</b> #</li>
+                            </ul>
+                            <div class="card-body d-flex justify-content-between">
+                                <a href="#" class="btn btn-primary bg-gradient">Ver más</a>
+                                <a href="#" class="btn btn-primary bg-gradient">Añadir al carrito</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="col-sm-12 col-lg-6 g-3">
+                        <div class="card shadow-sm">
+                            <div class="card-header bg-primary bg-gradient bg-opacity-10">
+                                <h5 class="card-title text-primary mt-2">Card Title</h5>
+                            </div>
+                            <img src="..." class="card-img-top" alt="..." />
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><b>Precio Oferta:</b> #####</li>
+                                <li class="list-group-item"><b>Precio Normal:</b> #####</li>
+                                <li class="list-group-item"><b>Stock:</b> #</li>
+                            </ul>
+                            <div class="card-body d-flex justify-content-between">
+                                <a href="#" class="btn btn-primary bg-gradient">Ver más</a>
+                                <a href="#" class="btn btn-primary bg-gradient">Añadir al carrito</a>
+                            </div>
+                        </div>
+                    </article>
                     <article class="col-sm-12 col-lg-6 g-3">
                         <div class="card shadow-sm">
                             <div class="card-header bg-primary bg-gradient bg-opacity-10">
@@ -75,8 +109,6 @@
                             </div>
                         </div>
                     </article>
-                </div>
-                <div class="row">
                     <article class="col-sm-12 col-lg-6 g-3">
                         <div class="card shadow-sm">
                             <div class="card-header bg-primary bg-gradient bg-opacity-10">
@@ -110,43 +142,7 @@
                                 <a href="#" class="btn btn-primary bg-gradient">Añadir al carrito</a>
                             </div>
                         </div>
-                    </article>
-                </div>
-                <div class="row">
-                    <article class="col-sm-12 col-lg-6 g-3">
-                        <div class="card shadow-sm">
-                            <div class="card-header bg-primary bg-gradient bg-opacity-10">
-                                <h5 class="card-title text-primary mt-2">Card Title</h5>
-                            </div>
-                            <img src="..." class="card-img-top" alt="..." />
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item"><b>Precio Oferta:</b> #####</li>
-                                <li class="list-group-item"><b>Precio Normal:</b> #####</li>
-                                <li class="list-group-item"><b>Stock:</b> #</li>
-                            </ul>
-                            <div class="card-body d-flex justify-content-between">
-                                <a href="#" class="btn btn-primary bg-gradient">Ver más</a>
-                                <a href="#" class="btn btn-primary bg-gradient">Añadir al carrito</a>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="col-sm-12 col-lg-6 g-3">
-                        <div class="card shadow-sm">
-                            <div class="card-header bg-primary bg-gradient bg-opacity-10">
-                                <h5 class="card-title text-primary mt-2">Card Title</h5>
-                            </div>
-                            <img src="..." class="card-img-top" alt="..." />
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item"><b>Precio Oferta:</b> #####</li>
-                                <li class="list-group-item"><b>Precio Normal:</b> #####</li>
-                                <li class="list-group-item"><b>Stock:</b> #</li>
-                            </ul>
-                            <div class="card-body d-flex justify-content-between">
-                                <a href="#" class="btn btn-primary bg-gradient">Ver más</a>
-                                <a href="#" class="btn btn-primary bg-gradient">Añadir al carrito</a>
-                            </div>
-                        </div>
-                    </article>
+                    </article>-->
                 </div>
             </article>
         </div>

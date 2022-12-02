@@ -4,6 +4,8 @@ class Crud {
     private $table;
     private $conexion;
     private $where = "";
+    private $orderBy = "";
+    private $limit = "";
     private $sql = null;
 
     public function __construct($table = null) {
@@ -13,7 +15,7 @@ class Crud {
 
     public function get() {
         try {
-            $this->sql = "SELECT * FROM {$this->table} {$this->where}";
+            $this->sql = "SELECT * FROM {$this->table} {$this->where} {$this->orderBy} {$this->limit}";
             $st = $this->conexion->prepare($this->sql);
             $st->execute();
             return $st->fetchAll(PDO::FETCH_OBJ);
@@ -84,6 +86,18 @@ class Crud {
         return $this;
     }
 
+    public function orderBy($field, $desc = false) {
+        $this->orderBy .= " ORDER BY " . $field;
+        $this->orderBy .= ($desc) ? " DESC " : " ASC ";
+        return $this;
+    }
+
+    public function limit($limit, $offset = null) {
+        $this->limit .= " LIMIT " . $limit;
+        $this->limit .= (!is_null($offset)) ? " OFFSET " . $offset : "";
+        return $this;
+    }
+
     private function executeSt($obj = null) {
         $st = $this->conexion->prepare($this->sql);
         if($obj !== null) {
@@ -102,6 +116,8 @@ class Crud {
 
     private function restartValues() {
         $this->where = "";
+        $this->orderBy = "";
+        $this->limit = "";
         $this->sql = null;
     }
 }

@@ -2,7 +2,7 @@
 
 class Model extends Crud {
     private $className;
-    private $excluir = ["className", "table", "conexion", "where", "sql", "excluir"];
+    private $excluir = ["className", "table", "conexion", "where", "orderBy", "limti", "sql", "excluir"];
 
     public function __construct($table, $className, $properties = null) {
         parent::__construct($table); // constructor de crud

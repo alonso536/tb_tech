@@ -9,18 +9,15 @@
         return await request.text();
     };
 
-    document.addEventListener('DOMContentLoaded', () => {
-        view = (main.getAttribute('data-view') === '') ? 0 : main.getAttribute('data-view');
+    document.addEventListener('DOMContentLoaded', async () => {
+        view = main.dataset.view;
 
-        if(view == 0) {
-            getCategories();
-        }
-
-        changeView(ROUTES.VIEWS[view])
+        await changeView(ROUTES.VIEWS[view])
         .then((response) => {
             main.innerHTML = '';
             main.innerHTML = `${response}`;
         });
+        getProducts();
     });
 
     for (let i = 0; i < views.length; i++) {
@@ -30,11 +27,11 @@
                 main.innerHTML = '';
                 main.innerHTML = `${response}`;
 
-                main.setAttribute('data-view', i);
+                main.dataset.view = i;
 
-                switch(Number(main.getAttribute('data-view'))) {
+                switch(Number(main.dataset.view)) {
                     case 0:
-                        getCategories();
+                        getProducts();
                         break;
                     case 1:
                         formLoginValidate();

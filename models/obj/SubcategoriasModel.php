@@ -1,12 +1,12 @@
 <?php
 
-class CategoriasModel extends Model {
+class SubcategoriasModel extends Model {
     protected $id;
     protected $nombre;
     protected $categoria_id;
 
     public function __construct($properties = null) {
-        parent::__construct("suvcategorias", SubcategoriasModel::class, $properties);
+        parent::__construct("subcategorias", SubcategoriasModel::class, $properties);
     }
 
     public function getId() {
