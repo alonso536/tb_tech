@@ -49,10 +49,6 @@ class Controller {
         echo $this->view('registro.php');
     }
 
-    public function registro_action() {
-        require_once './views/layout/registro-action.php';
-    }
-
     public function getRequest() {
         return $this->request;
     }

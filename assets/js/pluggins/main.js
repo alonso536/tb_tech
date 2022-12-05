@@ -51,6 +51,10 @@
                 .then((response) => {
                     main.innerHTML = '';
                     main.innerHTML = `${response}`;
+                    
+                    if(i == 0) {
+                        initGestor();
+                    }
 
                     if(i == 1) {
                         location.reload();

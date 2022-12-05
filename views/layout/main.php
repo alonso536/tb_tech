@@ -65,6 +65,8 @@
     <script src="<?= Url::base().'/assets/js/modules/home.js' ?>"></script>
     <script src="<?= Url::base().'/assets/js/modules/registro.js' ?>"></script>
     <script src="<?= Url::base().'/assets/js/modules/login.js' ?>"></script>
+    <script src="<?= Url::base().'/assets/js/modules/gestor/add-products.js' ?>"></script>
+    <script src="<?= Url::base().'/assets/js/modules/gestor.js' ?>"></script>
     <script src="<?= Url::base().'/assets/js/pluggins/main.js' ?>"></script>
 </body>
 

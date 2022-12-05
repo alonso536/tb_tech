@@ -32,7 +32,7 @@
                                 <h5 class="card-title text-primary mt-2">Categorias</h5>
                             </div>
                             <div class="card-body">
-                                <div class="accordion" id="accordionCategory">
+                                <div class="accordion accordion-flush" id="accordionCategory">
                                 </div>
                             </div>
                         </div>
@@ -40,109 +40,17 @@
                 </div>
             </aside>
             <article class="col-sm-12 col-md-8">
-                <div id="productos" class="row">
-                    <!--<article class="col-sm-12 col-lg-6 g-3">
-                        <div class="card shadow-sm">
-                            <div class="card-header bg-primary bg-gradient bg-opacity-10">
-                                <h5 class="card-title text-primary mt-2">Card Title</h5>
-                            </div>
-                            <img src="..." class="card-img-top" alt="..." />
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item"><b>Precio Oferta:</b> #####</li>
-                                <li class="list-group-item"><b>Precio Normal:</b> #####</li>
-                                <li class="list-group-item"><b>Stock:</b> #</li>
-                            </ul>
-                            <div class="card-body d-flex justify-content-between">
-                                <a href="#" class="btn btn-primary bg-gradient">Ver más</a>
-                                <a href="#" class="btn btn-primary bg-gradient">Añadir al carrito</a>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="col-sm-12 col-lg-6 g-3">
-                        <div class="card shadow-sm">
-                            <div class="card-header bg-primary bg-gradient bg-opacity-10">
-                                <h5 class="card-title text-primary mt-2">Card Title</h5>
-                            </div>
-                            <img src="..." class="card-img-top" alt="..." />
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item"><b>Precio Oferta:</b> #####</li>
-                                <li class="list-group-item"><b>Precio Normal:</b> #####</li>
-                                <li class="list-group-item"><b>Stock:</b> #</li>
-                            </ul>
-                            <div class="card-body d-flex justify-content-between">
-                                <a href="#" class="btn btn-primary bg-gradient">Ver más</a>
-                                <a href="#" class="btn btn-primary bg-gradient">Añadir al carrito</a>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="col-sm-12 col-lg-6 g-3">
-                        <div class="card shadow-sm">
-                            <div class="card-header bg-primary bg-gradient bg-opacity-10">
-                                <h5 class="card-title text-primary mt-2">Card Title</h5>
-                            </div>
-                            <img src="..." class="card-img-top" alt="..." />
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item"><b>Precio Oferta:</b> #####</li>
-                                <li class="list-group-item"><b>Precio Normal:</b> #####</li>
-                                <li class="list-group-item"><b>Stock:</b> #</li>
-                            </ul>
-                            <div class="card-body d-flex justify-content-between">
-                                <a href="#" class="btn btn-primary bg-gradient">Ver más</a>
-                                <a href="#" class="btn btn-primary bg-gradient">Añadir al carrito</a>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="col-sm-12 col-lg-6 g-3">
-                        <div class="card shadow-sm">
-                            <div class="card-header bg-primary bg-gradient bg-opacity-10">
-                                <h5 class="card-title text-primary mt-2">Card Title</h5>
-                            </div>
-                            <img src="..." class="card-img-top" alt="..." />
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item"><b>Precio Oferta:</b> #####</li>
-                                <li class="list-group-item"><b>Precio Normal:</b> #####</li>
-                                <li class="list-group-item"><b>Stock:</b> #</li>
-                            </ul>
-                            <div class="card-body d-flex justify-content-between">
-                                <a href="#" class="btn btn-primary bg-gradient">Ver más</a>
-                                <a href="#" class="btn btn-primary bg-gradient">Añadir al carrito</a>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="col-sm-12 col-lg-6 g-3">
-                        <div class="card shadow-sm">
-                            <div class="card-header bg-primary bg-gradient bg-opacity-10">
-                                <h5 class="card-title text-primary mt-2">Card Title</h5>
-                            </div>
-                            <img src="..." class="card-img-top" alt="..." />
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item"><b>Precio Oferta:</b> #####</li>
-                                <li class="list-group-item"><b>Precio Normal:</b> #####</li>
-                                <li class="list-group-item"><b>Stock:</b> #</li>
-                            </ul>
-                            <div class="card-body d-flex justify-content-between">
-                                <a href="#" class="btn btn-primary bg-gradient">Ver más</a>
-                                <a href="#" class="btn btn-primary bg-gradient">Añadir al carrito</a>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="col-sm-12 col-lg-6 g-3">
-                        <div class="card shadow-sm">
-                            <div class="card-header bg-primary bg-gradient bg-opacity-10">
-                                <h5 class="card-title text-primary mt-2">Card Title</h5>
-                            </div>
-                            <img src="..." class="card-img-top" alt="..." />
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item"><b>Precio Oferta:</b> #####</li>
-                                <li class="list-group-item"><b>Precio Normal:</b> #####</li>
-                                <li class="list-group-item"><b>Stock:</b> #</li>
-                            </ul>
-                            <div class="card-body d-flex justify-content-between">
-                                <a href="#" class="btn btn-primary bg-gradient">Ver más</a>
-                                <a href="#" class="btn btn-primary bg-gradient">Añadir al carrito</a>
-                            </div>
-                        </div>
-                    </article>-->
+                <div id="productos" class="row d-flex align-content-start">
+                </div>
+                <div id="paginador" class="row">
+                    <div class="col-4 col-md-2 my-3 d-flex justify-content-center">
+                        <button id="anterior" class="btn btn-primary btn-sm bg-gradient"><</button>
+                    </div>
+                    <div class="col-4 col-md-8 d-flex justify-content-evenly align-items-center">
+                    </div>
+                    <div class="col-4 col-md-2 my-3 d-flex justify-content-center">
+                        <button id="siguiente" class="btn btn-primary btn-sm bg-gradient">></button>
+                    </div>
                 </div>
             </article>
         </div>

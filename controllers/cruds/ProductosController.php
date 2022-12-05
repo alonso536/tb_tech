@@ -20,7 +20,7 @@ class ProductosController extends Controller {
 
     public function getProducts() {
         $productsModel = new ProductosModel();
-        $products = $productsModel->get();
+        $products = $productsModel->orderBy('fecha', true)->get();
         $v = (count($products));
 
         $respuesta = new Respuesta($v ? Mensajes::OK : Mensajes::ERR);
@@ -31,7 +31,7 @@ class ProductosController extends Controller {
 
     public function getProductsForDateLimit() {
         $productsModel = new ProductosModel();
-        $products = $productsModel->limit(6)->orderBy('fecha', true)->get();
+        $products = $productsModel->limit(60)->orderBy('fecha', true)->get();
         $v = (count($products));
 
         $respuesta = new Respuesta($v ? Mensajes::OK : Mensajes::ERR);
@@ -43,9 +43,9 @@ class ProductosController extends Controller {
     public function getProductsForCategory($category, $subcategory = null) {
         $productsModel = new ProductosModel();
         if(!is_null($subcategory)) {
-            $products = $productsModel->limit(6)->orderBy('fecha', true)->where('categoria_id', '=', $category)->where('subcategoria_id', '=', $subcategory)->get();
+            $products = $productsModel->orderBy('fecha', true)->where('categoria_id', '=', $category)->where('subcategoria_id', '=', $subcategory)->get();
         } else {
-            $products = $productsModel->limit(6)->orderBy('fecha', true)->where('categoria_id', '=', $category)->get();
+            $products = $productsModel->orderBy('fecha', true)->where('categoria_id', '=', $category)->get();
         }
         $v = (count($products));
 

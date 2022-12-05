@@ -9,11 +9,20 @@ const ROUTES = {
         },
         CATEGORIES : {
             0: 'categorias',
-            1: 'subcategorias'
+            1: 'subcategorias',
+            2: 'subcategorias/categorias'
         },
         PRODUCTS : {
             0: 'productos',
             1: 'productos/categorias'
+        }, 
+        GESTOR : {
+            PROFILE : 'gestor/perfil',
+            UPDATEPROFILE: 'gestor/actualizar-perfil',
+            PRODUCTS : 'gestor/productos',
+            ADDPRODUCTS : 'gestor/agregar-productos',
+            ORDERS : 'gestor/pedidos',
+            DELETE : 'gestor/eliminar-cuenta'
         }
     },
     RESOURCES: {

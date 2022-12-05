@@ -9,6 +9,12 @@ Route::get("/registro", Controller::class."@registro");
 // vistas usuario
 Route::get("/usuarios/gestor", UsuariosController::class."@userGestor");
 Route::get("/usuarios/logout", UsuariosController::class."@userLogOut");
+Route::get("/gestor/perfil", UsuariosController::class."@profile");
+Route::get("/gestor/actualizar-perfil", UsuariosController::class."@updateProfile");
+Route::get("/gestor/productos", UsuariosController::class."@products");
+Route::get("/gestor/agregar-productos", UsuariosController::class."@addProducts");
+Route::get("/gestor/pedidos", UsuariosController::class."@orders");
+Route::get("/gestor/eliminar-cuenta", UsuariosController::class."@deleteAccount");
 
 //categorias
 Route::get("/categorias", function() {
@@ -22,10 +28,17 @@ Route::get("/subcategorias", function() {
     echo $controller->getSubcategories()->json();
 });
 
+Route::post("/subcategorias/categorias", function(Request $request) {
+    $controller = new SubcategoriasController();
+    $datos = json_decode($request->datos);
+
+    echo $controller->getSubcategoriesForCategory((int) $datos->categoria)->json();
+});
+
 //productos
 Route::get("/productos", function() {
     $controller = new ProductosController();
-    echo $controller->getProductsForDateLimit()->json();
+    echo $controller->getProducts()->json();
 });
 
 Route::post("/productos/categorias", function(Request $request) {

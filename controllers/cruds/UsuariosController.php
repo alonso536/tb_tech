@@ -84,6 +84,30 @@ class UsuariosController extends Controller {
     }
 
     public function userGestor() {
-        echo "Gestor de " . $_SESSION['user']->nombre . " " . $_SESSION['user']->apellido;
+        echo $this->view('gestor.php');
+    }
+
+    public function profile() {
+        echo $this->view('gestor/profile.php');
+    }
+
+    public function updateProfile() {
+        echo $this->view('gestor/update-profile.php');
+    }
+
+    public function products() {
+        echo $this->view('gestor/products.php');
+    }
+
+    public function addProducts() {
+        echo $this->view('gestor/add-products.php');
+    }
+
+    public function orders() {
+        echo $this->view('gestor/orders.php');
+    }
+
+    public function deleteAccount() {
+        echo $this->view('gestor/delete-account.php');
     }
 }

@@ -17,6 +17,18 @@ h1 {
     display: none;
 }
 
+#form-product > p {
+    display: none;
+}
+
+#productos {
+    min-height: 800px;
+}
+
+#gestor-main {
+    min-height: 600px;
+}
+
 .subtitle {
     font-weight: 800;
     font-size: 2rem;
@@ -40,10 +52,19 @@ h1 {
     text-decoration: none;
 }
 
+.pag-link-show {
+    border: 1px solid #0d6efd;
+}
+
 .cat-button {
     cursor: pointer;
     text-decoration: none;
     display: block;
+}
+
+.lista-gestor {
+    list-style: none;
+    padding: 0px 10px;
 }
 
 @media screen and (max-width: 767px) {
