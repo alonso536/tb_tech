@@ -16,6 +16,9 @@ const ROUTES = {
             0: 'productos',
             1: 'productos/categorias'
         }, 
+        BRANDS : {
+            0: 'marcas'
+        },
         GESTOR : {
             PROFILE : 'gestor/perfil',
             UPDATEPROFILE: 'gestor/actualizar-perfil',
@@ -30,13 +33,15 @@ const ROUTES = {
     },
     FORMS: {
         REGISTER: '/shop/forms/register',
-        LOGIN: '/shop/forms/login'
+        LOGIN: '/shop/forms/login',
+        PRODUCTS: '/shop/forms/products'
     },
     MESSAGES: {
         NAME: {
             0: 'El nombre no puede tener menos de 2 caracteres',
             1: 'El nombre no puede tener mas de 25 caracteres',
-            2: 'El nombre no puede contener números ni guiones'
+            2: 'El nombre no puede contener números ni guiones',
+            3: 'El nombre no puede tener mas de 40 caracteres'
         },
         APELLIDO: {
             0: 'El apellido no puede tener menos de 2 caracteres',
@@ -58,9 +63,14 @@ const ROUTES = {
             1: 'La contraseña debe contener letras mayúsculas, minusculas, números y simbolos',
             2: 'Las contraseñas deben coincidir'
         },
+        DESCRIPTION: {
+            0: 'La descripción no puede tener más de 255 caracteres',
+            1: 'La descripción no puede contener símbolos'
+        },
         WARNING: {
             0: 'Todos los campos son obligatorios',
-            1: 'Debe aceptar los términos y condiciones'
+            1: 'Debe aceptar los términos y condiciones',
+            2: 'Los campos son obligatorios'
         }
     }
 };

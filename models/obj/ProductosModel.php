@@ -14,7 +14,7 @@ class ProductosModel extends Model {
     protected $marca_id;
 
     public function __construct($properties = null) {
-        parent::__construct("productos", CategoriasModel::class, $properties);
+        parent::__construct("productos", ProductosModel::class, $properties);
     }
 
     public function getId() {

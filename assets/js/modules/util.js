@@ -25,7 +25,11 @@ const getValues = () => {
         email : (document.querySelector('#email') !== null) ? document.querySelector('#email').value : null,
         fono : (document.querySelector('#fono') !== null) ? document.querySelector('#fono').value : null,
         password : (document.querySelector('#password') !== null) ? document.querySelector('#password').value : null,
-        password2 : (document.querySelector('#password2') !== null) ? document.querySelector('#password2').value : null
+        password2 : (document.querySelector('#password2') !== null) ? document.querySelector('#password2').value : null,
+        nombreProducto : (document.querySelector('#nombre-producto') !== null) ? document.querySelector('#nombre-producto').value : null,
+        descripcion : (document.querySelector('#descripcion') !== null) ? document.querySelector('#descripcion').value : null,
+        precio : (document.querySelector('#precio') !== null) ? document.querySelector('#precio').value : null,
+        stock : (document.querySelector('#stock') !== null) ? document.querySelector('#stock').value : null,
     }
 
     return values;

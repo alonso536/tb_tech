@@ -32,7 +32,13 @@ const insertMessageError = (input) => {
     } else if(input === 'password2') {
         if(values.password !== values.password2) return ROUTES.MESSAGES.PASSWORD[2];
         else return ROUTES.MESSAGES.PASSWORD[1];
-    } 
+    } else if(input === 'nombreProducto') {
+        if(values.nombreProducto.length < 2) return ROUTES.MESSAGES.NAME[0];
+        else return ROUTES.MESSAGES.NAME[3];
+    } else if(input === 'descripcion') {
+        if(values.descripcion.length > 255) return ROUTES.MESSAGES.DESCRIPTION[0];
+        else return ROUTES.MESSAGES.DESCRIPTION[1];
+    }
 
     return '';
 };

@@ -41,6 +41,12 @@ Route::get("/productos", function() {
     echo $controller->getProducts()->json();
 });
 
+//marcas
+Route::get("/marcas", function() {
+    $controller = new MarcasController();
+    echo $controller->getBrands()->json();
+});
+
 Route::post("/productos/categorias", function(Request $request) {
     $controller = new ProductosController();
     $datos = json_decode($request->datos);
@@ -64,4 +70,9 @@ Route::post("/forms/register", function(Request $request) {
 Route::post("/forms/login", function(Request $request) {
     $controller = new FormController();
     echo $controller->loginValidate($request)->json();
+});
+
+Route::post("/forms/products", function(Request $request) {
+    $controller = new FormController();
+    echo $controller->productValidate($request)->json();
 });

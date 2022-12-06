@@ -45,4 +45,24 @@ class FormController {
         } 
         return new Respuesta(Mensajes::ERR, 'Datos incorrectos');
     }
+
+    public function productValidate(Request $request) {
+        $controller = new ProductosController();
+        $product = json_decode($request->datos);
+
+        $insertProduct = array(
+            'categoria_id' => (int) $product->categoria,
+            'nombre' => $product->nombre,
+            'descripcion' => ($product->description == '') ? null : trim($product->descripcion),
+            'precio' => (int) $product->precio,
+            'stock' => (int) $product->stock,
+            'oferta' => null,
+            'fecha' => date("Y-m-d H:i:s"),
+            'image' => null,
+            'subcategoria_id' => (int) $product->subcategoria,
+            'marca_id' => (int) $product->marca
+        );
+
+        return $controller->insertProduct($insertProduct);
+    }
 }
