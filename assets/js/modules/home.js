@@ -48,6 +48,10 @@ const getCategories = async () => {
     });
 }
 
+const shortValue = (value, length) => {
+    return (value.length > length) ? value.substring(0, length)+'...' : value;
+}
+
 const showProduct = (products, container, limit = 0) => {
     let content = '';
     let max = (products.length >= 6) ? (limit + 6) : products.length;
@@ -58,26 +62,55 @@ const showProduct = (products, container, limit = 0) => {
     }
 
     container.innerHTML = '';
+    if(container.dataset.user == 2) {
+        for(let i = limit; i < max; i++) {
+            if(products[i].image == null) {
+                products[i].image = 'product-default.png';
+            }
 
-    for(let i = limit; i < max; i++) {
-        content += '<article class="col-sm-12 col-lg-6 g-3">' +
-                '<div class="card shadow-sm">' +
-                '<div class="card-header bg-primary bg-gradient bg-opacity-10">' +
-                '<h5 class="card-title text-primary mt-2">'+products[i].nombre+'</h5>' +
-                '</div>' +
-                '<img src="..." class="card-img-top" alt="..." />' +
-                '<ul class="list-group list-group-flush">' +
-                '<li class="list-group-item"><b>Precio Oferta:</b> '+products[i].precio+'</li>' +
-                '<li class="list-group-item"><b>Precio Normal:</b> '+products[i].precio+'</li>' +
-                '<li class="list-group-item"><b>Stock:</b> '+products[i].stock+'</li>' +
-                '</ul>' +
-                '<div class="card-body d-flex justify-content-between">' +
-                '<a href="#" class="btn btn-primary bg-gradient">Ver más</a>' +
-                '<a href="#" class="btn btn-primary bg-gradient">Añadir al carrito</a>' +
-                '</div>' +
-                '</div>' +
-                '</article>';
+            content += '<article class="col-sm-12 col-lg-6 g-3">' +
+                    '<div class="card shadow-sm">' +
+                    '<div class="card-header bg-primary bg-gradient bg-opacity-10">' +
+                    '<h5 class="card-title text-primary mt-2">'+shortValue(products[i].nombre, 25)+'</h5>' +
+                    '</div>' +
+                    '<img src="../shop/uploads/images/products/'+products[i].image+'" class="card-img-top" alt="'+products[i].nombre+'" />' +
+                    '<ul class="list-group list-group-flush">' +
+                    '<li class="list-group-item"><b>Precio Oferta:</b> '+products[i].precio+'</li>' +
+                    '<li class="list-group-item"><b>Precio Normal:</b> '+products[i].precio+'</li>' +
+                    '<li class="list-group-item"><b>Stock:</b> '+products[i].stock+'</li>' +
+                    '</ul>' +
+                    '<div class="card-body d-flex justify-content-between">' +
+                    '<a href="#" class="btn btn-primary bg-gradient">Ver más</a>' +
+                    '</div>' +
+                    '</div>' +
+                    '</article>';
+        }
+    } else {
+        for(let i = limit; i < max; i++) {
+            if(products[i].image == null) {
+                products[i].image = 'product-default.png';
+            }
+
+            content += '<article class="col-sm-12 col-lg-6 g-3">' +
+                    '<div class="card shadow-sm">' +
+                    '<div class="card-header bg-primary bg-gradient bg-opacity-10">' +
+                    '<h5 class="card-title text-primary mt-2">'+shortValue(products[i].nombre, 25)+'</h5>' +
+                    '</div>' +
+                    '<img src="../shop/uploads/images/products/'+products[i].image+'" class="card-img-top" alt="'+products[i].nombre+'" />' +
+                    '<ul class="list-group list-group-flush">' +
+                    '<li class="list-group-item"><b>Precio Oferta:</b> '+products[i].precio+'</li>' +
+                    '<li class="list-group-item"><b>Precio Normal:</b> '+products[i].precio+'</li>' +
+                    '<li class="list-group-item"><b>Stock:</b> '+products[i].stock+'</li>' +
+                    '</ul>' +
+                    '<div class="card-body d-flex justify-content-between">' +
+                    '<a href="#" class="btn btn-primary bg-gradient">Ver más</a>' +
+                    '<a href="#" class="btn btn-primary bg-gradient">Añadir al carrito</a>' +
+                    '</div>' +
+                    '</div>' +
+                    '</article>';
+        }
     }
+
     container.innerHTML = content;
 }
 
@@ -150,7 +183,7 @@ const paginator = (response) => {
 }
 
 const showProducts = async () => {
-const container = document.querySelector('#productos');
+    const container = document.querySelector('#productos');
 
     await get(ROUTES.VIEWS.PRODUCTS[0])
     .then(response => {

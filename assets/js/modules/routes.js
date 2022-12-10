@@ -25,7 +25,9 @@ const ROUTES = {
             PRODUCTS : 'gestor/productos',
             ADDPRODUCTS : 'gestor/agregar-productos',
             ORDERS : 'gestor/pedidos',
-            DELETE : 'gestor/eliminar-cuenta'
+            DELETE : 'gestor/eliminar-cuenta',
+            ACTIVE : 'gestor/activar-cuenta',
+            UPDATEPRODUCTS : 'gestor/actualizar-productos'
         }
     },
     RESOURCES: {
@@ -34,14 +36,21 @@ const ROUTES = {
     FORMS: {
         REGISTER: '/shop/forms/register',
         LOGIN: '/shop/forms/login',
-        PRODUCTS: '/shop/forms/products'
+        UPDATEPROFILE: '/shop/forms/update-profile',
+        PRODUCTS: '/shop/forms/products',
+        UPDATEPRODUCTS: '/shop/forms/update-product',
+        IMAGE: {
+            USER: '/shop/forms/img-user',
+            DELETEUSER: '/shop/forms/delete-img-user' 
+        }
     },
     MESSAGES: {
         NAME: {
             0: 'El nombre no puede tener menos de 2 caracteres',
             1: 'El nombre no puede tener mas de 25 caracteres',
             2: 'El nombre no puede contener números ni guiones',
-            3: 'El nombre no puede tener mas de 40 caracteres'
+            3: 'El nombre no puede tener mas de 40 caracteres',
+            4: 'El nombre no puede contener simbolos'
         },
         APELLIDO: {
             0: 'El apellido no puede tener menos de 2 caracteres',

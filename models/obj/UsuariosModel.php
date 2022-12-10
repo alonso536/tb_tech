@@ -7,8 +7,9 @@ class UsuariosModel extends Model {
     protected $email;
     protected $password;
     protected $fono;
-    protected $rol;
     protected $image;
+    protected $activo;
+    protected $permiso_id;
 
     public function __construct($properties = null) {
         parent::__construct("usuarios", UsuariosModel::class, $properties);
@@ -38,16 +39,16 @@ class UsuariosModel extends Model {
         return $this -> fono;
     }
 
-    public function getRol() {
-        return $this -> rol;
-    }
-
     public function getImage() {
         return $this -> image;
     }
 
     public function getActivo() {
         return $this -> activo;
+    }
+
+    public function getPermisoId() {
+        return $this -> permiso_id;
     }
 
     public function setNombre($nombre) {
@@ -70,11 +71,15 @@ class UsuariosModel extends Model {
         $this -> fono = $fono;
     }
 
-    public function setRol($rol) {
-        $this -> rol = $rol;
-    }
-
     public function setImage($image) {
         $this -> image = $image;
+    }
+
+    public function setActivo($activo) {
+        $this -> activo = $activo;
+    }
+
+    public function setPermisoId($permiso_id) {
+        $this -> permiso_id = $permiso_id;
     }
 }

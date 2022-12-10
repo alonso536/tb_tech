@@ -18,6 +18,18 @@ const post = async (route, datos) => {
     return await peticion.json();
 }
 
+const postImg = async (route, img) => {
+
+    let peticion = await fetch(route, {
+        method: 'POST',
+        body: img,
+        mode: 'cors',
+        cache: 'no-cache'
+    });
+
+    return await peticion.json();
+}
+
 const getValues = () => {
     values = {
         nombre : (document.querySelector('#nombre') !== null) ? document.querySelector('#nombre').value : null,

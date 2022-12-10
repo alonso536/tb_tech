@@ -1,1 +1,1 @@
-<h2>Eliminar cuenta</h2>
+<h2>Dsactivar cuenta</h2>

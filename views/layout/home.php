@@ -40,7 +40,7 @@
                 </div>
             </aside>
             <article class="col-sm-12 col-md-8">
-                <div id="productos" class="row d-flex align-content-start">
+                <div id="productos" data-user="<?= (isset($_SESSION['user'])) ? $_SESSION['user']->permiso_id : 0 ?>" class="row d-flex align-content-start">
                 </div>
                 <div id="paginador" class="row">
                     <div class="col-4 col-md-2 my-3 d-flex justify-content-center">

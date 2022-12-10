@@ -65,9 +65,9 @@ class ProductosController extends Controller {
         return $respuesta;
     }
 
-    public function updateProduct($product) {
+    public function updateProduct($product, $id) {
         $productModel = new ProductosModel();
-        $update = $productModel->where("id", "=", $product["idProducto"])->updateModel($product);
+        $update = $productModel->where("id", "=", $id)->updateModel($product);
         $v = ($update > 0);
 
         $respuesta = new Respuesta($v ? Mensajes::OK_UPDATE : Mensajes::ERR_UPDATE);

@@ -9,6 +9,7 @@
                         </div>
                         <div class="card-body">
                             <ul class="lista-gestor my-2">
+                                <?php if($_SESSION['user']->activo == 1) :?>
                                 <li class="mb-4"><a data-id="1" class="gestor-link link">Perfil</a></li>
                                 <li class="mb-4"><a data-id="2" class="gestor-link link">Actualizar perfil</a></li>
                                 <?php if(isset($_SESSION['admin'])) :?>
@@ -17,7 +18,10 @@
                                 <?php else :?>
                                 <li class="mb-4"><a data-id="5" class="gestor-link link">Mis pedidos</a></li>
                                 <?php endif; ?>
-                                <li class="mb-4"><a data-id="6" class="gestor-link link">Eliminar cuenta</a></li>
+                                <li class="mb-4"><a data-id="6" class="gestor-link link">Desactivar cuenta</a></li>
+                                <?php else :?>
+                                <li class="mb-4"><a data-id="7" class="gestor-link link">Activar cuenta</a></li>
+                                <?php endif; ?>
                             </ul>
                         </div>
                     </div>

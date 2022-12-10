@@ -43,9 +43,9 @@ class UsuariosController extends Controller {
         return $respuesta;
     }
 
-    public function updateUser($user) {
+    public function updateUser($user, $id) {
         $userModel = new UsuariosModel();
-        $update = $userModel->where("id", "=", $user["idUsuario"])->updateModel($user);
+        $update = $userModel->where("id", "=", $id)->updateModel($user);
         $v = ($update > 0);
 
         $respuesta = new Respuesta($v ? Mensajes::OK_UPDATE : Mensajes::ERR_UPDATE);
@@ -68,7 +68,7 @@ class UsuariosController extends Controller {
     public function userLogIn($user) {
         $_SESSION['user'] = $user;
 
-        if($user->rol == 'admin') {
+        if($user->permiso_id == 2) {
             $_SESSION['admin'] = true;
         }
     }
@@ -109,5 +109,26 @@ class UsuariosController extends Controller {
 
     public function deleteAccount() {
         echo $this->view('gestor/delete-account.php');
+    }
+
+    public function activeAccount() {
+        echo $this->view('gestor/active-account.php');
+    }
+
+    public function updateProducts($id) {
+        if(isset($_SESSION['product'])) {
+            unset($_SESSION['product']);
+        }
+
+        $controller = new ProductosModel();
+        $product = $controller->where('id', '=', $id)->first();
+
+        if(is_null($product)) {
+            echo '<h2 class="text-center">El producto no existe</h2>';
+            die();
+        }
+        
+        $_SESSION['product'] = $product;
+        echo $this->view('gestor/update-products.php');
     }
 }

@@ -57,43 +57,43 @@ const prevForm = async () => {
     brand.insertAdjacentHTML('beforeend', contentBrand);
 }
 
-const validateField = (exp, value, group, input) => {
+const validateField = (exp, value, group, obj, input) => {
     if(exp.test(value)) {
         group.nextElementSibling.style.cssText = 'display: none';
         group.nextElementSibling.innerHTML = '';
-        fieldsProducts[input] = true;
+        obj[input] = true;
     } else {
         group.nextElementSibling.style.cssText = 'display: block';
         group.nextElementSibling.innerHTML = insertMessageError(input);
-        fieldsProducts[input] = false;
+        obj[input] = false;
     }
 }
 
-const validateNumber = (group, value, input) => {
+const validateNumber = (group, value, obj, input) => {
     if(isNaN(value)) {
         group.nextElementSibling.style.cssText = 'display: block';
         group.nextElementSibling.innerHTML = `El ${input} solo puede contener números`;
-        fieldsProducts[input] = false;
+        obj[input] = false;
     } else if(value == '') {
         group.nextElementSibling.style.cssText = 'display: block';
         group.nextElementSibling.innerHTML = `El ${input} solo puede contener números`;
-        fieldsProducts[input] = false;
+        obj[input] = false;
     } else {
         group.nextElementSibling.style.cssText = 'display: none';
         group.nextElementSibling.innerHTML = '';
-        fieldsProducts[input] = true;
+        obj[input] = true;
     }
 }
 
-const validateSelect = (group, value, input) => {
+const validateSelect = (group, value, obj, input) => {
     if(value > 0) {
         group.nextElementSibling.style.cssText = 'display: none';
         group.nextElementSibling.innerHTML = '';
-        fieldsProducts[input] = true;
+        obj[input] = true;
     } else {
         group.nextElementSibling.style.cssText = 'display: block';
         group.nextElementSibling.innerHTML = 'Por favor escoge una opción';
-        fieldsProducts[input] = false;
+        obj[input] = false;
     }
 }
 
@@ -114,25 +114,25 @@ const formProductValidate = async () => {
             input.addEventListener('blur', e => {
                 switch(e.target.name) {
                     case 'nombre-producto':
-                        validateField(RegExp(response.datos.nombreProducto), e.target.value, groups[0], 'nombreProducto');
+                        validateField(RegExp(response.datos.nombreProducto), e.target.value, groups[0], fieldsProducts, 'nombreProducto');
                         break;
                     case 'descripcion':
-                        validateField(RegExp(response.datos.descripcion), e.target.value, groups[1], 'descripcion');
+                        validateField(RegExp(response.datos.descripcion), e.target.value, groups[3], fieldsProducts, 'descripcion');
                         break;
                     case 'precio':
-                        validateNumber(groups[2], e.target.value, 'precio');
+                        validateNumber(groups[1], e.target.value, fieldsProducts, 'precio');
                         break;
                     case 'stock':
-                        validateNumber(groups[3], e.target.value, 'stock'); 
+                        validateNumber(groups[2], e.target.value, fieldsProducts, 'stock'); 
                         break;
                     case 'categorias':
-                        validateSelect(groups[4], e.target.value, 'categorias');
+                        validateSelect(groups[4], e.target.value, fieldsProducts, 'categorias');
                         break;
                     case 'subcategorias':
-                        validateSelect(groups[5], e.target.value, 'subcategorias');
+                        validateSelect(groups[5], e.target.value, fieldsProducts, 'subcategorias');
                         break;
                     case 'marcas':
-                        validateSelect(groups[6], e.target.value, 'marcas');
+                        validateSelect(groups[6], e.target.value, fieldsProducts, 'marcas');
                         break;
                 }
             });
@@ -141,6 +141,10 @@ const formProductValidate = async () => {
 
     form.addEventListener('submit', e => {
         e.preventDefault();
+
+        if(getValues().descripcion == '') {
+            fieldsProducts['descripcion'] = true;
+        }
 
         if(!fieldsProducts['nombreProducto'] || !fieldsProducts['descripcion'] || !fieldsProducts['precio'] || !fieldsProducts['stock'] || 
             !fieldsProducts['categorias'] || !fieldsProducts['subcategorias'] || !fieldsProducts['marcas']) {

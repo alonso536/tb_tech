@@ -3,18 +3,34 @@ const changeViewGestor = async (view) => {
     return await request.text();
 };
 
-const initGestor = () => {
+const changeViewGestorPost = async (view, datos) => {
+    let request = await fetch(view, {
+        method: 'POST',
+        body: 'datos=' + JSON.stringify(datos),
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+    });
+    return await request.text();
+};
+
+const initGestor = async () => {
     const gestorMain = document.querySelector('#gestor-main');
     const links = [...document.querySelectorAll('.gestor-link')];
 
-    changeViewGestor(ROUTES.VIEWS.GESTOR.PROFILE)
+    await changeViewGestor(ROUTES.VIEWS.GESTOR.PROFILE)
     .then(response => {
         gestorMain.innerHTML = '';
         gestorMain.innerHTML = `${response}`;
+        profile();
     });
 
     links.forEach(link => {
         link.addEventListener('click', async () => {
+
+            if(main.firstElementChild.tagName == 'DIV') {
+                main.firstElementChild.remove();
+            }
 
             switch(Number(link.dataset.id)) {
                 case 1:
@@ -23,6 +39,7 @@ const initGestor = () => {
                         gestorMain.innerHTML = '';
                         gestorMain.innerHTML = `${response}`;
                     });
+                    profile();
                     break;
                 case 2:
                     await changeViewGestor(ROUTES.VIEWS.GESTOR.UPDATEPROFILE)
@@ -30,6 +47,7 @@ const initGestor = () => {
                         gestorMain.innerHTML = '';
                         gestorMain.innerHTML = `${response}`;
                     });
+                    formUpdateProfile();
                     break;
                 case 3:
                     await changeViewGestor(ROUTES.VIEWS.GESTOR.PRODUCTS)
@@ -37,6 +55,7 @@ const initGestor = () => {
                         gestorMain.innerHTML = '';
                         gestorMain.innerHTML = `${response}`;
                     });
+                    gestProducts();
                     break;
                 case 4:
                     await changeViewGestor(ROUTES.VIEWS.GESTOR.ADDPRODUCTS)
@@ -55,6 +74,13 @@ const initGestor = () => {
                     break;
                 case 6:
                     await changeViewGestor(ROUTES.VIEWS.GESTOR.DELETE)
+                    .then(response => {
+                        gestorMain.innerHTML = '';
+                        gestorMain.innerHTML = `${response}`;
+                    });
+                    break;
+                case 7: 
+                    await changeViewGestor(ROUTES.VIEWS.GESTOR.ACTIVE)
                     .then(response => {
                         gestorMain.innerHTML = '';
                         gestorMain.innerHTML = `${response}`;
