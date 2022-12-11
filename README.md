@@ -1,1 +1,2 @@
-#Repositorio subido a github con exito
+#Repositorio subido a GitHub con exito
+Este es un comentario editado desde GitHub
