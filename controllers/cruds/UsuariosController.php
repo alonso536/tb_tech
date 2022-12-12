@@ -95,6 +95,10 @@ class UsuariosController extends Controller {
         echo $this->view('gestor/update-profile.php');
     }
 
+    public function updatePassword() {
+        echo $this->view('gestor/update-password.php');
+    }
+
     public function products() {
         echo $this->view('gestor/products.php');
     }

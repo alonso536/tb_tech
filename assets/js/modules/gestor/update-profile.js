@@ -59,4 +59,15 @@ const formUpdateProfile = () => {
             .catch(err => console.log(err));
         }
     });
+
+    const gestorMain = document.querySelector('#gestor-main');
+    const updatePassword = document.querySelector('#update-password');
+
+    updatePassword.addEventListener('click', () => {
+        changeViewGestor(ROUTES.VIEWS.GESTOR.UPDATEPASSWORD)
+        .then(response => {
+            gestorMain.innerHTML = response;
+            formUpdatePasswordValidate();
+        });
+    });
 }

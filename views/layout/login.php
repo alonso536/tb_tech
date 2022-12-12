@@ -20,8 +20,8 @@
                             <input type="submit" class="btn btn-primary bg-gradient" value="Iniciar sesión">
                         </div>
                         <div class="d-flex flex-column justify-content-evenly my-5">
-                            <a class="link mx-auto my-2">Crear cuenta</a>
-                            <a class="link mx-auto my-2">Olvide mi contraseña</a>
+                            <a class="nav-link-login link mx-auto my-2">Crear cuenta</a>
+                            <a class="nav-link-login link mx-auto my-2">Olvide mi contraseña</a>
                         </div>
                     </form>
                 </div>

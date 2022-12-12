@@ -15,16 +15,6 @@
     </div>
     <p class="alert alert-danger mx-3 my-5" role="alert">
     </p>
-    <!--<div class="form-group mx-3 my-5">
-        <input type="password" id="password" name="password" class="form-control py-2" placeholder="Contraseña">
-    </div>
-    <p class="alert alert-danger mx-3 my-5" role="alert">
-    </p>
-    <div class="form-group mx-3 my-5">
-        <input type="password" id="password2" name="password2" class="form-control py-2" placeholder="Repite tu contraseña">
-    </div>
-    <p class="alert alert-danger mx-3 my-5" role="alert">
-    </p>-->
     <div class="form-group mx-3 my-5 d-flex justify-content-start">
         <input type="checkbox" id="terminos" class="form-check" name="terminos">
         <label for="terminos" class="mx-2">Acepto los Términos y Condiciones</label>
@@ -35,3 +25,6 @@
         <input type="submit" class="btn btn-primary bg-gradient" value="Actualizar datos">
     </div>
 </form>
+<div class="text-center">
+<a id="update-password" class="link mx-auto my-2">Actualizar contraseña</a>
+</div>

@@ -64,9 +64,11 @@
     <script src="<?= Url::base().'/assets/js/modules/util.js' ?>"></script>
     <script src="<?= Url::base().'/assets/js/modules/home.js' ?>"></script>
     <script src="<?= Url::base().'/assets/js/modules/registro.js' ?>"></script>
+    <script src="<?= Url::base().'/assets/js/modules/password-recovery.js' ?>"></script>
     <script src="<?= Url::base().'/assets/js/modules/login.js' ?>"></script>
     <script src="<?= Url::base().'/assets/js/modules/gestor/profile.js' ?>"></script>
     <script src="<?= Url::base().'/assets/js/modules/gestor/update-profile.js' ?>"></script>
+    <script src="<?= Url::base().'/assets/js/modules/gestor/update-password.js' ?>"></script>
     <script src="<?= Url::base().'/assets/js/modules/gestor/add-products.js' ?>"></script>
     <script src="<?= Url::base().'/assets/js/modules/gestor/update-products.js' ?>"></script>
     <script src="<?= Url::base().'/assets/js/modules/gestor/products.js' ?>"></script>

@@ -51,6 +51,10 @@ class Controller {
         echo $this->view('registro.php');
     }
 
+    public function passwordRecovery() {
+        echo $this->view('password-recovery.php');
+    }
+
     public function getRequest() {
         return $this->request;
     }

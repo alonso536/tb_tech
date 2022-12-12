@@ -3,6 +3,7 @@ const ROUTES = {
         0: 'inicio', 
         1: 'login', 
         2: 'registro',
+        3: 'password-recovery',
         USERS : {
             0: 'usuarios/gestor',
             1: 'usuarios/logout'
@@ -22,6 +23,7 @@ const ROUTES = {
         GESTOR : {
             PROFILE : 'gestor/perfil',
             UPDATEPROFILE: 'gestor/actualizar-perfil',
+            UPDATEPASSWORD: 'gestor/actualizar-password',
             PRODUCTS : 'gestor/productos',
             ADDPRODUCTS : 'gestor/agregar-productos',
             ORDERS : 'gestor/pedidos',
@@ -36,6 +38,8 @@ const ROUTES = {
     FORMS: {
         REGISTER: '/shop/forms/register',
         LOGIN: '/shop/forms/login',
+        PASSWORDRECOVERY: '/shop/forms/password-recovery',
+        SENDPASSWORDRECOVERY: '/shop/forms/send-password-recovery',
         UPDATEPROFILE: '/shop/forms/update-profile',
         PRODUCTS: '/shop/forms/products',
         UPDATEPRODUCTS: '/shop/forms/update-product',

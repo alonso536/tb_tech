@@ -79,6 +79,43 @@ class FormController {
         return new Respuesta(Mensajes::ERR_UPDATE);
     }
 
+    public function passwordRecovery(Request $request) {
+        $controller = new UsuariosController();
+        $user = json_decode($request->datos);
+
+        $respuesta = $controller->getUser('email', $user->email);
+
+        if($respuesta->getCodigo() == -1) {
+            return new Respuesta(Mensajes::ERR, 'El email ingresado no se encuentra registrado');
+        }
+
+        $_SESSION['recovery'] = $respuesta->getDatos();
+        return new Respuesta(Mensajes::OK);
+    }
+
+    public function changePassword(Request $request) {
+        $controller = new UsuariosController();
+        $user = json_decode($request->datos);
+
+        $expresiones = $controller->getRegExp();
+
+        if(preg_match('/'.$expresiones['password'].'/', $user->password)) {
+            $updateUser = array(
+                'password' => password_hash($user->password, PASSWORD_DEFAULT)
+            );
+
+            if(isset($_SESSION['user'])) {
+                return $controller->updateUser($updateUser, $_SESSION['user']->id);
+            }
+
+            if(isset($_SESSION['recovery'])) {
+                return $controller->updateUser($updateUser, $_SESSION['recovery']->id);
+            }
+            return new Respuesta(Mensajes::ERR, 'Error al actualizar la contraseña (Error 2)');
+        }
+        return new Respuesta(Mensajes::ERR, 'Error al actualizar la contraseña (Error 1)');
+    }
+
     public function productValidate(Request $request) {
         $controller = new ProductosController();
         $product = json_decode($request->datos);

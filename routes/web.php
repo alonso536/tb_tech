@@ -5,12 +5,14 @@ Route::get("/", Controller::class."@main");
 Route::get("/inicio", Controller::class."@inicio");
 Route::get("/login", Controller::class."@login");
 Route::get("/registro", Controller::class."@registro");
+Route::get("/password-recovery", Controller::class."@passwordRecovery");
 
 // vistas usuario
 Route::get("/usuarios/gestor", UsuariosController::class."@userGestor");
 Route::get("/usuarios/logout", UsuariosController::class."@userLogOut");
 Route::get("/gestor/perfil", UsuariosController::class."@profile");
 Route::get("/gestor/actualizar-perfil", UsuariosController::class."@updateProfile");
+Route::get("/gestor/actualizar-password", UsuariosController::class."@updatePassword");
 Route::get("/gestor/productos", UsuariosController::class."@products");
 Route::get("/gestor/agregar-productos", UsuariosController::class."@addProducts");
 Route::get("/gestor/pedidos", UsuariosController::class."@orders");
@@ -82,6 +84,17 @@ Route::post("/forms/login", function(Request $request) {
 Route::post("/forms/update-profile", function(Request $request) {
     $controller = new FormController();
     echo $controller->updateProfileValidate($request)->json();
+    session_destroy();
+});
+
+Route::post("/forms/password-recovery", function(Request $request) {
+    $controller = new FormController();
+    echo $controller->passwordRecovery($request)->json();
+});
+
+Route::post("/forms/send-password-recovery", function(Request $request) {
+    $controller = new FormController();
+    echo $controller->changePassword($request)->json();
     session_destroy();
 });
 
