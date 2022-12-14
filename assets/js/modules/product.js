@@ -40,7 +40,7 @@ const renderProducts = async (products, container) => {
                     <div class="card-header bg-primary bg-gradient bg-opacity-10">
                     <h5 class="card-title text-primary mt-2">${products[i].nombre}</h5>
                     </div>
-                    <img src="../shop/uploads/images/products/${products[i].image}" class="card-img-top" alt="${products[i].nombre}" />
+                    <img src="../shop/uploads/images/products/${products[i].image}" class="card-image card-img-top" alt="${products[i].nombre}" />
                     <ul class="list-group list-group-flush">
                     <li class="list-group-item"><b>Precio Oferta:</b> ${products[i].precio}</li>
                     <li class="list-group-item"><b>Precio Normal:</b> ${products[i].precio}</li>
@@ -56,11 +56,11 @@ const renderProducts = async (products, container) => {
     container.innerHTML += content;
 }
 
-const showRandomProducts = () => {
+const showRandomProducts = async () => {
     const content = document.querySelector('#contenido-producto');
     const randomProducts = document.querySelector('#random-products');
 
-    post(ROUTES.VIEWS.PRODUCTS[1], {
+    await post(ROUTES.VIEWS.PRODUCTS[1], {
         'categoria': content.dataset.category
     })
     .then(async response => {
@@ -77,28 +77,39 @@ const showRandomProducts = () => {
             }
         }
     });
+
+    const containerBody = [...document.querySelectorAll('#random-products .card-body')];
+
+    if(randomProducts.dataset.user == 2) {
+        containerBody.forEach(cb => {
+            cb.lastElementChild.remove();
+        });
+    }
 }
 
 const product = () => {
     imageProduct();
     showContent();
 
-    const can = document.querySelector('#inp-cantidad');
-    let cantidad = can.firstElementChild.nextElementSibling.value;
+    const can = (document.querySelector('#inp-cantidad') !== null) ? document.querySelector('#inp-cantidad') : null;
 
-    can.firstElementChild.addEventListener('click', () => {
-        if(cantidad != 1) {
-            cantidad--;
-            can.firstElementChild.nextElementSibling.value = cantidad;
-        }
-    });
+    if(can != null) {
+        let cantidad = can.firstElementChild.nextElementSibling.value;
 
-    can.lastElementChild.addEventListener('click', () => {
-        if(cantidad != can.dataset.stock) {
-            cantidad++;
-            can.firstElementChild.nextElementSibling.value = cantidad;
-        }
-    });
+        can.firstElementChild.addEventListener('click', () => {
+            if(cantidad != 1) {
+                cantidad--;
+                can.firstElementChild.nextElementSibling.value = cantidad;
+            }
+        });
+    
+        can.lastElementChild.addEventListener('click', () => {
+            if(cantidad != can.dataset.stock) {
+                cantidad++;
+                can.firstElementChild.nextElementSibling.value = cantidad;
+            }
+        });
+    }
 
     showRandomProducts();
 }

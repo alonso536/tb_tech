@@ -73,7 +73,7 @@ const showProduct = (products, container, limit = 0) => {
                 '<div class="card-header bg-primary bg-gradient bg-opacity-10">' +
                 '<h5 class="card-title text-primary mt-2">'+shortValue(products[i].nombre, 25)+'</h5>' +
                 '</div>' +
-                '<img src="../shop/uploads/images/products/'+products[i].image+'" class="card-img-top" alt="'+products[i].nombre+'" />' +
+                '<img src="../shop/uploads/images/products/'+products[i].image+'" class="card-image card-img-top" alt="'+products[i].nombre+'" />' +
                 '<ul class="list-group list-group-flush">' +
                 '<li class="list-group-item"><b>Precio Oferta:</b> '+products[i].precio+'</li>' +
                 '<li class="list-group-item"><b>Precio Normal:</b> '+products[i].precio+'</li>' +
@@ -88,6 +88,13 @@ const showProduct = (products, container, limit = 0) => {
     }
 
     container.innerHTML = content;
+
+    const containerBody = [...document.querySelectorAll('#productos .card-body')];
+    if(container.dataset.user == 2) {
+        containerBody.forEach(cb => {
+            cb.lastElementChild.remove();
+        });
+    }
 }
 
 const detectPags = (element) => {
@@ -193,14 +200,6 @@ const showProducts = async () => {
             });
         });
     });
-
-    const containerBody = [...document.querySelectorAll('#productos .card-body')];
-
-    if(container.dataset.user == 2) {
-        containerBody.forEach(cb => {
-            cb.lastElementChild.remove();
-        });
-    }
 }
 
 const goToProduct = async () => {
@@ -225,6 +224,7 @@ const getProducts = async () => {
     await showProducts();
 
     const buttons = [...document.querySelectorAll('#anterior, #siguiente, .pag-link')];
+
     await goToProduct();
     buttons.forEach(button => {
         button.addEventListener('click', goToProduct);

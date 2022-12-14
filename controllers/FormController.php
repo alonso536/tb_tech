@@ -149,7 +149,7 @@ class FormController {
                 $insertProduct = array(
                     'categoria_id' => (int) $product->categoria,
                     'nombre' => $product->nombre,
-                    'descripcion' => ($product->description == '') ? null : trim($product->descripcion),
+                    'descripcion' => ($product->descripcion == '') ? '' : trim($product->descripcion),
                     'precio' => (int) $product->precio,
                     'stock' => (int) $product->stock,
                     'oferta' => null,

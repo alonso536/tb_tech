@@ -22,7 +22,7 @@ class Controller {
             'email' => '^[a-zA-Z0-9_.+-]{3,30}@[a-zA-Z0-9-]{3,30}\.[a-zA-Z0-9-.]{2,10}$',
             'password' => '^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,16}$',
             'fono' => '^\d{7,14}$',
-            'descripcion' => '^[A-Za-z0-9\s#&.,;:]{0,255}$'
+            'descripcion' => '^[A-Za-z0-9\s#&.,;:]{0,10000}$'
         );
         
         return $expresiones;

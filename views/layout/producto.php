@@ -46,7 +46,7 @@
                                         <a class="d-block btn btn-primary btn-lg bg-gradient mb-3">Comprar</a>
                                         <div id="inp-cantidad" data-stock="<?= $_SESSION['product']->stock ?>" class="input-group">
                                             <button class="input-group-text btn btn-primary bg-gradient">-</button>
-                                            <input type="text" class="form-control text-center" id="cantidad" name="cantidad" value="1" aria-label="Username"disabled>
+                                            <input type="text" class="form-control text-center" id="cantidad" name="cantidad" value="1" aria-label="Username" disabled>
                                             <button class="input-group-text btn btn-primary bg-gradient">+</button>
                                         </div>
                                     <?php endif; ?>
@@ -62,62 +62,16 @@
                             <label class="btn btn-outline-primary bg-gradient" for="valoraciones">Valoraciones</label>
                         </div>
                         <div id="content" class="text-start p-3 border-bottom border-secondary mx-2">
-                            <p class="description-paragraph"><?= $_SESSION['product']->descripcion ?></p>
-                            <h2 class="text-center hidden">Valoraciones</h2>
+                            <div>
+                                <h2 class="text-center py-3">Descripción</h2>
+                                <p class="description-paragraph"><?= $_SESSION['product']->descripcion ?></p>
+                            </div>
+                            <div class="hidden">
+                                <h2 class="text-center py-3">Valoraciones</h2>
+                            </div>
                         </div>
-                        <div id="random-products" class="row mt-3">
+                        <div id="random-products" data-user="<?= $_SESSION['user']->permiso_id ?>" class="row mt-3">
                             <h2 class="text-center py-3">Productos relacionados</h2>
-                            <!--<article class="col-sm-12 col-md-4 g-3">
-                                <div class="card shadow-sm">
-                                    <div class="card-header bg-primary bg-gradient bg-opacity-10">
-                                        <h5 class="card-title text-primary mt-2">tetwetwet</h5>
-                                    </div>
-                                    <img src="../shop/uploads/images/products/product-default.png" class="card-img-top" alt="" />
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item"><b>Precio Oferta:</b> XXX</li>
-                                        <li class="list-group-item"><b>Precio Normal:</b> XXX</li>
-                                        <li class="list-group-item"><b>Stock:</b> XX</li>
-                                    </ul>
-                                    <div class="card-body d-flex flex-md-column flex-lg-row justify-content-between">
-                                        <a class="btn btn-primary bg-gradient mb-sm-0 mb-md-2 mb-lg-0 show-more">Ver más</a>
-                                        <a class="btn btn-primary bg-gradient">Añadir al carrito</a>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="col-sm-12 col-md-4 g-3">
-                                <div class="card shadow-sm">
-                                    <div class="card-header bg-primary bg-gradient bg-opacity-10">
-                                        <h5 class="card-title text-primary mt-2">tetwetwet</h5>
-                                    </div>
-                                    <img src="../shop/uploads/images/products/product-default.png" class="card-img-top" alt="" />
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item"><b>Precio Oferta:</b> XXX</li>
-                                        <li class="list-group-item"><b>Precio Normal:</b> XXX</li>
-                                        <li class="list-group-item"><b>Stock:</b> XX</li>
-                                    </ul>
-                                    <div class="card-body d-flex flex-md-column flex-lg-row justify-content-between">
-                                        <a class="btn btn-primary bg-gradient mb-sm-0 mb-md-2 mb-lg-0 show-more">Ver más</a>
-                                        <a class="btn btn-primary bg-gradient">Añadir al carrito</a>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="col-sm-12 col-md-4 g-3">
-                                <div class="card shadow-sm">
-                                    <div class="card-header bg-primary bg-gradient bg-opacity-10">
-                                        <h5 class="card-title text-primary mt-2">tetwetwet</h5>
-                                    </div>
-                                    <img src="../shop/uploads/images/products/product-default.png" class="card-img-top" alt="" />
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item"><b>Precio Oferta:</b> XXX</li>
-                                        <li class="list-group-item"><b>Precio Normal:</b> XXX</li>
-                                        <li class="list-group-item"><b>Stock:</b> XX</li>
-                                    </ul>
-                                    <div class="card-body d-flex flex-md-column flex-lg-row justify-content-between">
-                                        <a class="btn btn-primary bg-gradient mb-sm-0 mb-md-2 mb-lg-0 show-more">Ver más</a>
-                                        <a class="btn btn-primary bg-gradient">Añadir al carrito</a>
-                                    </div>
-                                </div>
-                            </article>-->
                         </div>
                     <?php else : ?>
                         <h2 class="text-center text-primary mt-2">No se ha encontrado el producto</h2>

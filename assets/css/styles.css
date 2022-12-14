@@ -71,6 +71,12 @@ form > p {
     text-align: justify;
 }
 
+.card-image {
+    min-height: 300px !important;
+    max-height: 300px;
+    object-fit: contain;
+}
+
 .img-user {
     margin: 30px 0px 10px;
     width: 100%;
