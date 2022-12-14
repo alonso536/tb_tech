@@ -1,25 +1,25 @@
-const linksImage = (formImage) => {
+const linksImage = (formImage, route) => {
     const addImage = (document.querySelector('#add-image') !== null) ? document.querySelector('#add-image') : null;
     const updateImage = (document.querySelector('#update-image') !== null) ? document.querySelector('#update-image') : null;
     const deleteImage = (document.querySelector('#delete-image') !== null) ? document.querySelector('#delete-image') : null;
 
-    const form = document.querySelector(formImage);
+    const form = (document.querySelector(formImage) !== null) ? document.querySelector(formImage) : null;
 
     if(addImage != null) {
         addImage.addEventListener('click', () => {
-            form.classList.toggle('form-hidden');
+            form.classList.toggle('hidden');
         });
     }
 
     if(updateImage != null) {
         updateImage.addEventListener('click', () => {
-            form.classList.toggle('form-hidden');
+            form.classList.toggle('hidden');
         });
     }
 
     if(deleteImage != null) {
         deleteImage.addEventListener('click', () => {
-            post(ROUTES.FORMS.IMAGE.DELETEUSER, {
+            post(route, {
                 'image' : deleteImage.dataset.image
             })
             .then(response => {
@@ -34,9 +34,9 @@ const linksImage = (formImage) => {
     }
 }
 
-const formImage = (formImage) => {
-    const form = document.querySelector(formImage);
-    const img = document.querySelector('#img');
+const formImage = (formImage, route) => {
+    const form = (document.querySelector(formImage) !== null) ? document.querySelector(formImage) : null;
+    const img = (document.querySelector('#img') !== null) ? document.querySelector('#img') : null;
 
     form.addEventListener('submit', e => {
         e.preventDefault();
@@ -48,7 +48,7 @@ const formImage = (formImage) => {
         } else {
             let data = new FormData(form);
 
-            postImg(ROUTES.FORMS.IMAGE.USER, data)
+            postImg(route, data)
             .then(response => {
                 if(response.codigo == -1) {
                     img.nextElementSibling.style.display = 'block';
@@ -62,6 +62,6 @@ const formImage = (formImage) => {
 }
 
 const profile = () => {
-    linksImage('#form-image-profile');
-    formImage('#form-image-profile');    
+    linksImage('#form-image-profile', ROUTES.FORMS.IMAGE.DELETEUSER);
+    formImage('#form-image-profile', ROUTES.FORMS.IMAGE.USER);    
 }

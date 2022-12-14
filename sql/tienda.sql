@@ -231,10 +231,12 @@ CREATE TABLE permisos(
 CREATE TABLE valoraciones(
     id INT NOT NULL auto_increment,
     producto_id INT NOT NULL,
+    usuario_id INT NOT NULL,
     nivel INT NOT NULL,
     comentario TEXT,
     CONSTRAINT pk_valoraciones PRIMARY KEY(id),
-    CONSTRAINT fk_valoracion_producto FOREIGN KEY(producto_id) REFERENCES productos(id) ON UPDATE CASCADE ON DELETE RESTRICT
+    CONSTRAINT fk_valoracion_producto FOREIGN KEY(producto_id) REFERENCES productos(id) ON UPDATE CASCADE ON DELETE RESTRICT,
+    CONSTRAINT fk_valoracion_usuario FOREIGN KEY(usuario_id) REFERENCES usuarios(id) ON UPDATE CASCADE ON DELETE RESTRICT
 )ENGINE=InnoDb;
 
 USE tb_tech;
@@ -248,6 +250,20 @@ ALTER TABLE usuarios ADD permiso_id INT NOT NULL;
 ALTER TABLE usuarios ADD CONSTRAINT fk_permiso_usuario FOREIGN KEY(permiso_id) REFERENCES permisos(id) ON UPDATE CASCADE ON DELETE RESTRICT;
 
 USE tb_tech;
-select * from usuarios;
+UPDATE valoraciones SET fecha = NOW();
+
 UPDATE usuarios SET permiso_id = 1 WHERE rol = 'user';
 UPDATE usuarios SET permiso_id = 2 WHERE rol = 'admin';
+
+USE tb_tech;
+
+INSERT INTO valoraciones VALUES(null, 21, 21, 2, null, NOW());
+INSERT INTO valoraciones VALUES(null, 2, 27, 5, null, NOW());
+INSERT INTO valoraciones VALUES(null, 17, 3, 4, null, NOW());
+INSERT INTO valoraciones VALUES(null, 10, 1, 2, null, NOW());
+INSERT INTO valoraciones VALUES(null, 6, 17, 5, null, NOW());
+INSERT INTO valoraciones VALUES(null, 8, 30, 2, null, NOW());
+
+USE tb_tech;
+SELECT v.id, CONCAT(u.nombre, ' ', u.apellido) AS 'nombre', v.producto_id, v.nivel, v.comentario FROM valoraciones v
+INNER JOIN usuarios u WHERE v.usuario_id = u.id AND v.producto_id = 23; 

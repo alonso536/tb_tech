@@ -15,7 +15,8 @@ const ROUTES = {
         },
         PRODUCTS : {
             0: 'productos',
-            1: 'productos/categorias'
+            1: 'productos/categorias',
+            2: 'producto'
         }, 
         BRANDS : {
             0: 'marcas'
@@ -27,6 +28,7 @@ const ROUTES = {
             PRODUCTS : 'gestor/productos',
             ADDPRODUCTS : 'gestor/agregar-productos',
             ORDERS : 'gestor/pedidos',
+            VALS : 'gestor/valoraciones',
             DELETE : 'gestor/eliminar-cuenta',
             ACTIVE : 'gestor/activar-cuenta',
             UPDATEPRODUCTS : 'gestor/actualizar-productos'
@@ -41,11 +43,14 @@ const ROUTES = {
         PASSWORDRECOVERY: '/shop/forms/password-recovery',
         SENDPASSWORDRECOVERY: '/shop/forms/send-password-recovery',
         UPDATEPROFILE: '/shop/forms/update-profile',
+        ACCOUNT: '/shop/forms/update-account',
         PRODUCTS: '/shop/forms/products',
         UPDATEPRODUCTS: '/shop/forms/update-product',
         IMAGE: {
             USER: '/shop/forms/img-user',
-            DELETEUSER: '/shop/forms/delete-img-user' 
+            DELETEUSER: '/shop/forms/delete-img-user',
+            PRODUCT: '/shop/forms/img-product',
+            DELETEPRODUCT: '/shop/forms/delete-img-product'
         }
     },
     MESSAGES: {

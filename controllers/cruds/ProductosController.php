@@ -86,4 +86,16 @@ class ProductosController extends Controller {
 
         return $respuesta;
     }
+
+    public function showProduct($id) {
+        $product = $this->getProduct('id', $id);
+
+        if($product->getCodigo() == -1) {
+            unset($_SESSION['product']);
+        } else {
+            $_SESSION['product'] = $product->getDatos();
+        }
+
+        echo $this->view('producto.php');
+    }
 }

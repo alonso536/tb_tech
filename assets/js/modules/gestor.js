@@ -3,7 +3,7 @@ const changeViewGestor = async (view) => {
     return await request.text();
 };
 
-const changeViewGestorPost = async (view, datos) => {
+const changeViewPost = async (view, datos) => {
     let request = await fetch(view, {
         method: 'POST',
         body: 'datos=' + JSON.stringify(datos),
@@ -17,13 +17,24 @@ const changeViewGestorPost = async (view, datos) => {
 const initGestor = async () => {
     const gestorMain = document.querySelector('#gestor-main');
     const links = [...document.querySelectorAll('.gestor-link')];
+    const asideContent = document.querySelector('#aside-content');
 
-    await changeViewGestor(ROUTES.VIEWS.GESTOR.PROFILE)
-    .then(response => {
-        gestorMain.innerHTML = '';
-        gestorMain.innerHTML = `${response}`;
-        profile();
-    });
+    if(asideContent.dataset.active == 1) {
+        await changeViewGestor(ROUTES.VIEWS.GESTOR.PROFILE)
+        .then(response => {
+            gestorMain.innerHTML = '';
+            gestorMain.innerHTML = `${response}`;
+            profile();
+        });
+    } else {
+        await changeViewGestor(ROUTES.VIEWS.GESTOR.ACTIVE)
+        .then(response => {
+            gestorMain.innerHTML = '';
+            gestorMain.innerHTML = `${response}`;
+            activeAccount();
+        });
+    }
+
 
     links.forEach(link => {
         link.addEventListener('click', async () => {
@@ -73,18 +84,27 @@ const initGestor = async () => {
                     });
                     break;
                 case 6:
-                    await changeViewGestor(ROUTES.VIEWS.GESTOR.DELETE)
+                    await changeViewGestor(ROUTES.VIEWS.GESTOR.VALS)
                     .then(response => {
                         gestorMain.innerHTML = '';
                         gestorMain.innerHTML = `${response}`;
                     });
                     break;
-                case 7: 
+                case 7:
+                    await changeViewGestor(ROUTES.VIEWS.GESTOR.DELETE)
+                    .then(response => {
+                        gestorMain.innerHTML = '';
+                        gestorMain.innerHTML = `${response}`;
+                    });
+                    desactAccount();
+                    break;
+                case 8: 
                     await changeViewGestor(ROUTES.VIEWS.GESTOR.ACTIVE)
                     .then(response => {
                         gestorMain.innerHTML = '';
                         gestorMain.innerHTML = `${response}`;
                     });
+                    activeAccount();
                     break;
             }
         });

@@ -111,6 +111,10 @@ class UsuariosController extends Controller {
         echo $this->view('gestor/orders.php');
     }
 
+    public function vals() {
+        echo $this->view('gestor/vals.php');
+    }
+
     public function deleteAccount() {
         echo $this->view('gestor/delete-account.php');
     }

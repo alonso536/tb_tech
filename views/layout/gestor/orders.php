@@ -1,1 +1,1 @@
-<h2>Mis Pedidos</h2>
+<h2 class="text-center">Mis Pedidos</h2>

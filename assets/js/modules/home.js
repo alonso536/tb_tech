@@ -62,53 +62,29 @@ const showProduct = (products, container, limit = 0) => {
     }
 
     container.innerHTML = '';
-    if(container.dataset.user == 2) {
-        for(let i = limit; i < max; i++) {
-            if(products[i].image == null) {
-                products[i].image = 'product-default.png';
-            }
+    for(let i = limit; i < max; i++) {
 
-            content += '<article class="col-sm-12 col-lg-6 g-3">' +
-                    '<div class="card shadow-sm">' +
-                    '<div class="card-header bg-primary bg-gradient bg-opacity-10">' +
-                    '<h5 class="card-title text-primary mt-2">'+shortValue(products[i].nombre, 25)+'</h5>' +
-                    '</div>' +
-                    '<img src="../shop/uploads/images/products/'+products[i].image+'" class="card-img-top" alt="'+products[i].nombre+'" />' +
-                    '<ul class="list-group list-group-flush">' +
-                    '<li class="list-group-item"><b>Precio Oferta:</b> '+products[i].precio+'</li>' +
-                    '<li class="list-group-item"><b>Precio Normal:</b> '+products[i].precio+'</li>' +
-                    '<li class="list-group-item"><b>Stock:</b> '+products[i].stock+'</li>' +
-                    '</ul>' +
-                    '<div class="card-body d-flex justify-content-between">' +
-                    '<a href="#" class="btn btn-primary bg-gradient">Ver más</a>' +
-                    '</div>' +
-                    '</div>' +
-                    '</article>';
+        if(products[i].image == null) {
+            products[i].image = 'product-default.png';
         }
-    } else {
-        for(let i = limit; i < max; i++) {
-            if(products[i].image == null) {
-                products[i].image = 'product-default.png';
-            }
 
-            content += '<article class="col-sm-12 col-lg-6 g-3">' +
-                    '<div class="card shadow-sm">' +
-                    '<div class="card-header bg-primary bg-gradient bg-opacity-10">' +
-                    '<h5 class="card-title text-primary mt-2">'+shortValue(products[i].nombre, 25)+'</h5>' +
-                    '</div>' +
-                    '<img src="../shop/uploads/images/products/'+products[i].image+'" class="card-img-top" alt="'+products[i].nombre+'" />' +
-                    '<ul class="list-group list-group-flush">' +
-                    '<li class="list-group-item"><b>Precio Oferta:</b> '+products[i].precio+'</li>' +
-                    '<li class="list-group-item"><b>Precio Normal:</b> '+products[i].precio+'</li>' +
-                    '<li class="list-group-item"><b>Stock:</b> '+products[i].stock+'</li>' +
-                    '</ul>' +
-                    '<div class="card-body d-flex justify-content-between">' +
-                    '<a href="#" class="btn btn-primary bg-gradient">Ver más</a>' +
-                    '<a href="#" class="btn btn-primary bg-gradient">Añadir al carrito</a>' +
-                    '</div>' +
-                    '</div>' +
-                    '</article>';
-        }
+        content += '<article class="col-sm-12 col-lg-6 g-3">' +
+                '<div class="card shadow-sm">' +
+                '<div class="card-header bg-primary bg-gradient bg-opacity-10">' +
+                '<h5 class="card-title text-primary mt-2">'+shortValue(products[i].nombre, 25)+'</h5>' +
+                '</div>' +
+                '<img src="../shop/uploads/images/products/'+products[i].image+'" class="card-img-top" alt="'+products[i].nombre+'" />' +
+                '<ul class="list-group list-group-flush">' +
+                '<li class="list-group-item"><b>Precio Oferta:</b> '+products[i].precio+'</li>' +
+                '<li class="list-group-item"><b>Precio Normal:</b> '+products[i].precio+'</li>' +
+                '<li class="list-group-item"><b>Stock:</b> '+products[i].stock+'</li>' +
+                '</ul>' +
+                '<div class="card-body d-flex justify-content-between">' +
+                '<a data-id="'+products[i].id+'" class="btn btn-primary bg-gradient show-more">Ver más</a>' +                    
+                '<a class="btn btn-primary bg-gradient">Añadir al carrito</a>' +
+                '</div>' +
+                '</div>' +
+                '</article>';
     }
 
     container.innerHTML = content;
@@ -177,7 +153,7 @@ const createPags = (products) => {
 
 const paginator = (response) => {
     let products = [];
-    products = products.concat(response);
+    products = response.filter(res => res.stock != 0);
 
     createPags(products);
 }
@@ -217,9 +193,40 @@ const showProducts = async () => {
             });
         });
     });
+
+    const containerBody = [...document.querySelectorAll('#productos .card-body')];
+
+    if(container.dataset.user == 2) {
+        containerBody.forEach(cb => {
+            cb.lastElementChild.remove();
+        });
+    }
+}
+
+const goToProduct = async () => {
+    const links = [...document.querySelectorAll('.show-more')];
+
+    links.forEach(link => {
+        link.addEventListener('click', () => {
+            changeViewPost(ROUTES.VIEWS.PRODUCTS[2], {
+                'id': link.dataset.id
+            }).then(response => {
+                main.innerHTML = response;
+                main.dataset.view = 3;
+                window.scrollTo(0, 100);
+                product();
+            });
+        });
+    });
 }
 
 const getProducts = async () => {
     await getCategories();
     await showProducts();
+
+    const buttons = [...document.querySelectorAll('#anterior, #siguiente, .pag-link')];
+    await goToProduct();
+    buttons.forEach(button => {
+        button.addEventListener('click', goToProduct);
+    });
 }

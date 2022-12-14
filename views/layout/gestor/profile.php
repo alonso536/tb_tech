@@ -21,7 +21,7 @@
                 </div>
             </div>
         </div>
-        <form id="form-image-profile" class="form-hidden" method="POST" action="<?= Url::base() . '/forms/img' ?>" enctype="multipart/form-data">
+        <form id="form-image-profile" class="hidden" method="POST" action="<?= Url::base() . '/forms/img' ?>" enctype="multipart/form-data">
             <input type="file" class="form-control" id="img" name="img" accept=".png, .jpg, .jpeg">
             <p class="alert alert-danger mx-3 my-5" role="alert">
             </p>

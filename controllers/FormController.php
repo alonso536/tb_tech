@@ -111,9 +111,30 @@ class FormController {
             if(isset($_SESSION['recovery'])) {
                 return $controller->updateUser($updateUser, $_SESSION['recovery']->id);
             }
-            return new Respuesta(Mensajes::ERR, 'Error al actualizar la contraseña (Error 2)');
+            return new Respuesta(Mensajes::ERR, 'Error al actualizar la contraseña');
         }
-        return new Respuesta(Mensajes::ERR, 'Error al actualizar la contraseña (Error 1)');
+        return new Respuesta(Mensajes::ERR, 'Error al actualizar la contraseña');
+    }
+
+    public function updateAccount(Request $request) {
+        $controller = new UsuariosController();
+        $user = json_decode($request->datos);
+
+        if(isset($_SESSION['user'])) {
+            if($user->activo) {
+                $updateUser = array(
+                    'activo' => 0
+                );
+                return $controller->updateUser($updateUser, $_SESSION['user']->id);
+            } else {
+                $updateUser = array(
+                    'activo' => 1
+                );
+                return $controller->updateUser($updateUser, $_SESSION['user']->id);
+            }
+        } else {
+            return new Respuesta(Mensajes::ERR, 'Error al actualizar la cuenta');
+        }
     }
 
     public function productValidate(Request $request) {

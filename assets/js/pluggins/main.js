@@ -18,6 +18,10 @@
             main.innerHTML = `${response}`;
         });
         getProducts();
+
+        if(view == 3) {
+            product();
+        }
     });
 
     for (let i = 0; i < views.length; i++) {

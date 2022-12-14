@@ -28,7 +28,7 @@ const gestProducts = async () => {
 
     updates.forEach(update => {
         update.addEventListener('click', () => {
-            changeViewGestorPost(ROUTES.VIEWS.GESTOR.UPDATEPRODUCTS, {
+            changeViewPost(ROUTES.VIEWS.GESTOR.UPDATEPRODUCTS, {
                 'id' : update.dataset.id
             })
             .then(response => {

@@ -16,6 +16,7 @@ Route::get("/gestor/actualizar-password", UsuariosController::class."@updatePass
 Route::get("/gestor/productos", UsuariosController::class."@products");
 Route::get("/gestor/agregar-productos", UsuariosController::class."@addProducts");
 Route::get("/gestor/pedidos", UsuariosController::class."@orders");
+Route::get("/gestor/valoraciones", UsuariosController::class."@vals");
 Route::get("/gestor/eliminar-cuenta", UsuariosController::class."@deleteAccount");
 Route::get("/gestor/activar-cuenta", UsuariosController::class."@activeAccount");
 
@@ -50,12 +51,6 @@ Route::get("/productos", function() {
     echo $controller->getProducts()->json();
 });
 
-//marcas
-Route::get("/marcas", function() {
-    $controller = new MarcasController();
-    echo $controller->getBrands()->json();
-});
-
 Route::post("/productos/categorias", function(Request $request) {
     $controller = new ProductosController();
     $datos = json_decode($request->datos);
@@ -65,6 +60,19 @@ Route::post("/productos/categorias", function(Request $request) {
     } else {
         echo $controller->getProductsForCategory((int) $datos->categoria, (int) $datos->subcategoria)->json();
     }
+});
+
+Route::post("/producto", function(Request $request) {
+    $controller = new ProductosController();
+    $datos = json_decode($request->datos);
+
+    $controller->showProduct($datos->id);
+});
+
+//marcas
+Route::get("/marcas", function() {
+    $controller = new MarcasController();
+    echo $controller->getBrands()->json();
 });
 
 //recursos
@@ -95,6 +103,12 @@ Route::post("/forms/password-recovery", function(Request $request) {
 Route::post("/forms/send-password-recovery", function(Request $request) {
     $controller = new FormController();
     echo $controller->changePassword($request)->json();
+    session_destroy();
+});
+
+Route::post("/forms/update-account", function(Request $request) {
+    $controller = new FormController();
+    echo $controller->updateAccount($request)->json();
     session_destroy();
 });
 
@@ -135,5 +149,35 @@ Route::post("/forms/delete-img-user", function(Request $request) {
 
         $_SESSION['user']->image = null;
         echo $userController->updateUser($updateUser, $_SESSION['user']->id)->json();
+    }
+});
+
+Route::post("/forms/img-product", function() {
+    $controller = new ImageController();
+    if(isset($_FILES['img'])) {
+        echo $controller->validateImage('products/', $_FILES['img'], 'product', ProductosController::class)->json();
+    } else {
+        $res = new Respuesta(Mensajes::ERR);
+        echo $res->json();
+    }
+});
+
+Route::post("/forms/delete-img-product", function(Request $request) {
+    $controller = new ImageController();
+    $image = json_decode($request->datos);
+
+    $res = $controller->deleteImage($_SERVER['DOCUMENT_ROOT'].'/shop/uploads/images/products/', $image->image);
+
+    if($res->getCodigo() == -1) {
+        $response = new Respuesta(Mensajes::ERR, 'No se pudo quitar la imagen');
+        echo $response->json();
+    } else {
+        $productController = new ProductosController();
+        $updateProduct = array(
+            'image' => ''
+        );
+
+        $_SESSION['product']->image = null;
+        echo $productController->updateProduct($updateProduct, $_SESSION['product']->id)->json();
     }
 });
