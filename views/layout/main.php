@@ -14,7 +14,7 @@
 </head>
 
 <body class="bg-secondary bg-gradient bg-opacity-25">
-    <nav id="nav" class="navbar navbar-expand-md bg-primary bg-gradient">
+    <nav id="nav" data-user="<?= (isset($_SESSION['user'])) ? $_SESSION['user']->permiso_id : 0 ?>" class="navbar navbar-expand-md bg-primary bg-gradient">
         <div class="container">
             <a id="title" class="navbar-brand text-white d-flex subtitle">TB TECH</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-toggler" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,6 +28,9 @@
                     <?php if(isset($_SESSION['user'])): ?>
                     <li class="nav-item">
                         <a class="nav-link-log-in nav-link text-white"><?= $_SESSION['user']->nombre ?></a>
+                    </li>
+                    <li id="cart" class="nav-item">
+                        <a class="nav-link-log-in nav-link text-white">Carrito</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link-log-in nav-link text-white">Cerrar sesión</a>

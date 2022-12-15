@@ -1,4 +1,5 @@
 (function() {
+    const nav = document.querySelector('#nav');
     const views = [...document.querySelectorAll('.nav-link-log-out')];
     const viewsLogin = ([...document.querySelectorAll('.nav-link-log-in')] !== null) ? [...document.querySelectorAll('.nav-link-log-in')] : null;
 
@@ -48,6 +49,11 @@
         });
     }
 
+    if(nav.dataset.user == 2) {
+        const cart = document.querySelector('#cart');
+        cart.style.display = 'none';
+    }
+
     if(viewsLogin !== null) {
         for(let i = 0; i < viewsLogin.length; i++) {
             viewsLogin[i].addEventListener('click', () => {
@@ -60,7 +66,7 @@
                         initGestor();
                     }
 
-                    if(i == 1) {
+                    if(i == 2) {
                         location.reload();
                     }
                 });

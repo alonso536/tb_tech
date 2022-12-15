@@ -6,7 +6,8 @@ const ROUTES = {
         3: 'password-recovery',
         USERS : {
             0: 'usuarios/gestor',
-            1: 'usuarios/logout'
+            1: 'usuarios/cart',
+            2: 'usuarios/logout'
         },
         CATEGORIES : {
             0: 'categorias',
@@ -53,6 +54,7 @@ const ROUTES = {
             DELETEPRODUCT: '/shop/forms/delete-img-product'
         }
     },
+    CART: 'cart',
     MESSAGES: {
         NAME: {
             0: 'El nombre no puede tener menos de 2 caracteres',

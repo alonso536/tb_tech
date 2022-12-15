@@ -39,9 +39,9 @@ class CategoriasController extends Controller {
         return $respuesta;
     }
 
-    public function updateCategory($category) {
+    public function updateCategory($category, $id) {
         $categoryModel = new CategoriasModel();
-        $update = $categoryModel->where("id", "=", $category["idCategoria"])->updateModel($category);
+        $update = $categoryModel->where("id", "=", $id)->updateModel($category);
         $v = ($update > 0);
 
         $respuesta = new Respuesta($v ? Mensajes::OK_UPDATE : Mensajes::ERR_UPDATE);

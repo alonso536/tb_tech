@@ -81,7 +81,7 @@ const showProduct = (products, container, limit = 0) => {
                 '</ul>' +
                 '<div class="card-body d-flex justify-content-between">' +
                 '<a data-id="'+products[i].id+'" class="btn btn-primary bg-gradient show-more">Ver más</a>' +                    
-                '<a class="btn btn-primary bg-gradient">Añadir al carrito</a>' +
+                '<a data-id="'+products[i].id+'" class="btn btn-primary bg-gradient add-to-cart">Añadir al carrito</a>' +
                 '</div>' +
                 '</div>' +
                 '</article>';
@@ -202,6 +202,15 @@ const showProducts = async () => {
     });
 }
 
+const validateSesionUser = async () => {
+    await changeViewGestor(ROUTES.VIEWS[1])
+    .then(response => {
+        main.innerHTML = '';
+        main.innerHTML = `${response}`;
+        formLoginValidate();
+    });
+}
+
 const goToProduct = async () => {
     const links = [...document.querySelectorAll('.show-more')];
 
@@ -219,6 +228,26 @@ const goToProduct = async () => {
     });
 }
 
+const addToCart = async () => {
+    const links = [...document.querySelectorAll('.add-to-cart')];
+    const container = document.querySelector('#productos');
+
+    links.forEach(link => {
+        link.addEventListener('click', async () => {
+            if(container.dataset.user == 0) {
+                await validateSesionUser();
+            } else {
+                post(ROUTES.CART, {
+                    'id': link.dataset.id
+                })
+                .then(response => {
+                    console.log(response);
+                });
+            }
+        });
+    });
+}
+
 const getProducts = async () => {
     await getCategories();
     await showProducts();
@@ -226,7 +255,12 @@ const getProducts = async () => {
     const buttons = [...document.querySelectorAll('#anterior, #siguiente, .pag-link')];
 
     await goToProduct();
+    await addToCart();
+
     buttons.forEach(button => {
-        button.addEventListener('click', goToProduct);
+        button.addEventListener('click', async () => {
+            await goToProduct();
+            await addToCart();
+        });
     });
 }

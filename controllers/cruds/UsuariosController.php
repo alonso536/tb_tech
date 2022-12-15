@@ -83,6 +83,10 @@ class UsuariosController extends Controller {
         $this->inicio();
     }
 
+    public function cart() {
+        echo $this->view('carrito.php');
+    }
+
     public function userGestor() {
         echo $this->view('gestor.php');
     }

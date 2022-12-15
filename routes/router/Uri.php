@@ -41,7 +41,7 @@ class Uri {
         $i = 0;
 
         foreach($parts as $part) {
-            $finalStr .= ($i = 0) ? strtolower($part) : ucfirst($part);
+            $finalStr .= ($i == 0) ? strtolower($part) : ucfirst($part);
             $i++;
         }
 

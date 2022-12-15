@@ -9,6 +9,7 @@ Route::get("/password-recovery", Controller::class."@passwordRecovery");
 
 // vistas usuario
 Route::get("/usuarios/gestor", UsuariosController::class."@userGestor");
+Route::get("/usuarios/cart", UsuariosController::class."@cart");
 Route::get("/usuarios/logout", UsuariosController::class."@userLogOut");
 Route::get("/gestor/perfil", UsuariosController::class."@profile");
 Route::get("/gestor/actualizar-perfil", UsuariosController::class."@updateProfile");
