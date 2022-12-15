@@ -237,11 +237,13 @@ const addToCart = async () => {
             if(container.dataset.user == 0) {
                 await validateSesionUser();
             } else {
-                post(ROUTES.CART, {
-                    'id': link.dataset.id
+                post(ROUTES.CART.ADD, {
+                    'id': link.dataset.id,
+                    'cantidad': 1
                 })
                 .then(response => {
-                    console.log(response);
+                    let alerta = (response.codigo == -1) ? showAlert('alert-danger', response.mensaje) : showAlert('alert-success', response.mensaje);
+                    main.insertAdjacentElement('afterbegin', alerta);
                 });
             }
         });

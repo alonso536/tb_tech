@@ -54,7 +54,12 @@ const ROUTES = {
             DELETEPRODUCT: '/shop/forms/delete-img-product'
         }
     },
-    CART: 'cart',
+    CART: {
+        ADD: 'cart/agregar',
+        GET: 'cart/obtener',
+        REMOVE: 'cart/remover',
+        DELETE: 'cart/borrar'
+    },
     MESSAGES: {
         NAME: {
             0: 'El nombre no puede tener menos de 2 caracteres',

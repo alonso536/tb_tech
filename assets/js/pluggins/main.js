@@ -57,6 +57,9 @@
     if(viewsLogin !== null) {
         for(let i = 0; i < viewsLogin.length; i++) {
             viewsLogin[i].addEventListener('click', () => {
+                if(main.firstElementChild.tagName == 'DIV') {
+                    main.firstElementChild.remove();
+                }
                 changeView(ROUTES.VIEWS.USERS[i])
                 .then((response) => {
                     main.innerHTML = '';
@@ -64,6 +67,10 @@
                     
                     if(i == 0) {
                         initGestor();
+                    }
+
+                    if(i == 1) {
+                        initCart();
                     }
 
                     if(i == 2) {

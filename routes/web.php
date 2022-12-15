@@ -182,3 +182,19 @@ Route::post("/forms/delete-img-product", function(Request $request) {
         echo $productController->updateProduct($updateProduct, $_SESSION['product']->id)->json();
     }
 });
+
+//carrito
+Route::post("/cart/agregar", function(Request $request) {
+    $controller = new CartController();
+    echo $controller->add($request)->json();
+});
+
+Route::get("/cart/obtener", function() {
+    $controller = new CartController();
+    echo $controller->get()->json();
+});
+
+Route::get("/cart/borrar", function() {
+    $controller = new CartController();
+    echo $controller->delete()->json();
+});
