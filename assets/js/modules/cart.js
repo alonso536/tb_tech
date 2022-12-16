@@ -1,6 +1,5 @@
-const showProductsCart = (products, container) => {
-    let content = `<h2 class="text-center">Carrito</h2>
-                    <table class="table table-bordered my-4">
+const showProductsCart = (products) => {
+    let content = `<table class="table table-bordered my-4">
                     <thead class="table-secondary">
                     <tr>
                     <th scope="col">Nombre</th>
@@ -12,26 +11,64 @@ const showProductsCart = (products, container) => {
                     <tbody id="list-products">`;
 
     for(let i = 0; i < products.length; i++) {
-        content += `<tr><td scope="row">${shortValue(products[i].nombre, 30)}</td>
+        if(products[i] == null) {
+            continue;
+        }
+        content += `<tr><td scope="row">${shortValue(products[i].nombre, 20)}</td>
                     <td>${products[i].precio}</td>
                     <td>${products[i].cantidad}</td>
-                    <td><a data-id="${products[i].id}" class="link">Remover</a></td></tr>`;
+                    <td><a data-id="${products[i].id}" class="link remove-cart">Remover</a></td></tr>`;
     }
                     
     content += `</tbody></table>`;
-    container.innerHTML = content;
+    return content;
 }
 
-const getDataCart = () => {
+const getDataCart = async () => {
     const cart = document.querySelector('#cart-body');
 
-    get(ROUTES.CART.GET)
+    await get(ROUTES.CART.GET)
     .then(response => {
         if(response.codigo == -1) {
             cart.innerHTML = '<h2 class="text-center">No hay productos en el carrito</h2>';
+            cart.nextElementSibling.classList.add('hidden');
         } else {
-            showProductsCart(response.datos, cart);
+            cart.innerHTML = '<h2 class="text-center">Carrito</h2>';
+            cart.insertAdjacentHTML('beforeend', showProductsCart(response.datos));
+            cart.nextElementSibling.classList.remove('hidden');
         }
+    });
+}
+
+const getTotalCart = async () => {
+    const total = document.querySelector('#totalCart');
+
+    get(ROUTES.CART.TOTAL)
+    .then(response => {
+        if(response.codigo == -1) {
+            total.innerHTML = 0;
+        } else {
+            total.innerHTML = response.datos;
+        }
+    });
+}
+
+const removeCart = async () => {
+    const removeCart = [...document.querySelectorAll('.remove-cart')];
+
+    removeCart.forEach(link => {
+        link.addEventListener('click', () => {
+            post(ROUTES.CART.REMOVE, {
+                'id': link.dataset.id
+            })
+            .then(async response => {
+                if(response.codigo == -1) {
+                    console.log(response);
+                } else {
+                    initCart();
+                }
+            });
+        });
     });
 }
 
@@ -40,12 +77,12 @@ const deleteCart = () => {
 
     deleteCart.addEventListener('click', () => {
         get(ROUTES.CART.DELETE)
-        .then(response => {
+        .then(async response => {
             if(response.codigo == -1) {
                 console.log(response);
             } else {
-                console.log(response);
-                getDataCart();
+                //console.log(response);
+                initCart();
             }
         });
     });
@@ -53,5 +90,7 @@ const deleteCart = () => {
 
 const initCart = async () => {
     await getDataCart();
-    await deleteCart();
+    await getTotalCart();
+    await removeCart();
+    deleteCart();
 }

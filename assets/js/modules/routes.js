@@ -57,6 +57,7 @@ const ROUTES = {
     CART: {
         ADD: 'cart/agregar',
         GET: 'cart/obtener',
+        TOTAL: 'cart/total',
         REMOVE: 'cart/remover',
         DELETE: 'cart/borrar'
     },

@@ -16,6 +16,12 @@ class CartController {
             return new Respuesta(Mensajes::ERR, 'No se pudo agregar el producto al carrito');
         }
 
+        $product->cantidad = ($product->cantidad > $productAdd->getDatos()->stock) ? $productAdd->getDatos()->stock : $product->cantidad;
+        
+        if($productAdd->getDatos()->stock <= 0) {
+            return new Respuesta(Mensajes::ERR, 'No se pudo agregar el producto al carrito');
+        }
+
         if(isset($_SESSION['cart'])) {
             $counter = 0;
             foreach($_SESSION['cart'] as $field => $value) {
@@ -46,14 +52,57 @@ class CartController {
         if(isset($_SESSION['cart'])) {
             $res = new Respuesta(Mensajes::OK);
             $res->setDatos($_SESSION['cart']);
-
             return $res;
         }
         return new Respuesta(Mensajes::ERR, 'El carrito está vacío');
     }
 
-    public function remove() {
-        
+    public function getTotal() {
+        if(!isset($_SESSION['cart'])) {
+            return new Respuesta(Mensajes::ERR, 'No hay productos en el carrito');
+        } else {
+            $total = 0;
+
+            foreach($_SESSION['cart'] as $field => $value) {
+                $total += ($_SESSION['cart'][$field]['precio'] * $_SESSION['cart'][$field]['cantidad']);
+            }
+        }
+        $res = new Respuesta(Mensajes::OK);
+        $res->setDatos($total);
+
+        return $res;
+    }
+
+    public function remove(Request $request) {
+        $product = json_decode($request->datos);
+        $counter = 0;
+
+        if(!isset($_SESSION['cart'])) {
+            return new Respuesta(Mensajes::ERR, 'No hay productos en el carrito');
+        }
+
+        foreach($_SESSION['cart'] as $field => $value) {
+            if(!is_null($_SESSION['cart'][$field])) {
+                $counter++;
+            }
+        }
+
+        foreach($_SESSION['cart'] as $field => $value) {
+            if($value['id'] == $product->id) {
+                if($_SESSION['cart'][$field]['cantidad'] > 1) {
+                    $_SESSION['cart'][$field]['cantidad']--;
+                } else {
+                    $_SESSION['cart'][$field] = null;
+                }
+
+                if($_SESSION['cart'][$field]['cantidad'] < 1 && $counter == 1) {
+                    return $this->delete();
+                }
+                return new Respuesta(Mensajes::OK, 'Producto removido del carrito');
+            } 
+        }
+
+        return new Respuesta(Mensajes::ERR, 'No se pudo remover el producto');
     }
 
     public function delete() {

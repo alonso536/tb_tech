@@ -21,7 +21,7 @@
                                     <h5 class="text-start d-flex justify-content-evenly my-3"><b>Precio Oferta: </b><span class="text-primary"><?= $_SESSION['product']->precio ?></span></h5>
                                     <h5 class="text-start d-flex justify-content-evenly my-3"><b>Precio Normal: </b><span class="text-primary"><?= $_SESSION['product']->precio ?></span></h5>
                                 </div>
-                                <div class="text-center py-3">
+                                <div id="prod" data-user="<?=$_SESSION['user']->permiso_id?>" class="text-center py-3">
                                     <?php if ($_SESSION['user']->permiso_id == 2) : ?>
                                         <button class="btn btn-primary btn-lg bg-gradient mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                                             Gestionar imagenes
@@ -43,7 +43,7 @@
                                             <input type="submit" class="btn btn-primary btn-sm bg-gradient my-3" value="Subir imagen">
                                         </form>
                                     <?php else : ?>
-                                        <a class="d-block btn btn-primary btn-lg bg-gradient mb-3">Comprar</a>
+                                        <a id="buy" data-id="<?= $_SESSION['product']->id ?>" class="d-block btn btn-primary btn-lg bg-gradient mb-3">Comprar</a>
                                         <div id="inp-cantidad" data-stock="<?= $_SESSION['product']->stock ?>" class="input-group">
                                             <button class="input-group-text btn btn-primary bg-gradient">-</button>
                                             <input type="text" class="form-control text-center" id="cantidad" name="cantidad" value="1" aria-label="Username" disabled>

@@ -25,7 +25,7 @@ class SubcategoriasModel extends Model {
         $this -> nombre = $nombre;
     }
 
-    public function setCategortiaId($categoria_id) {
+    public function setCategoriaId($categoria_id) {
         $this -> categoria_id = $categoria_id;
     }
 }

@@ -38,7 +38,7 @@ const renderProducts = async (products, container) => {
         content += `<article class="col-sm-12 col-md-4 g-3">
                     <div class="card shadow-sm">
                     <div class="card-header bg-primary bg-gradient bg-opacity-10">
-                    <h5 class="card-title text-primary mt-2">${products[i].nombre}</h5>
+                    <h5 class="card-title text-primary mt-2">${shortValue(products[i].nombre, 20)}</h5>
                     </div>
                     <img src="../shop/uploads/images/products/${products[i].image}" class="card-image card-img-top" alt="${products[i].nombre}" />
                     <ul class="list-group list-group-flush">
@@ -48,7 +48,7 @@ const renderProducts = async (products, container) => {
                     </ul>
                     <div class="card-body d-flex flex-md-column flex-lg-row justify-content-between">
                     <a data-id="${products[i].id}" class="btn btn-primary bg-gradient mb-sm-0 mb-md-2 mb-lg-0 show-more">Ver más</a>
-                    <a class="btn btn-primary bg-gradient">Añadir al carrito</a>
+                    <a data-id="${products[i].id}" class="btn btn-primary bg-gradient add-to-cart">Añadir al carrito</a>
                     </div>
                     </div>
                     </article>`;
@@ -87,7 +87,7 @@ const showRandomProducts = async () => {
     }
 }
 
-const product = () => {
+const product = async () => {
     imageProduct();
     showContent();
 
@@ -99,17 +99,20 @@ const product = () => {
         can.firstElementChild.addEventListener('click', () => {
             if(cantidad != 1) {
                 cantidad--;
-                can.firstElementChild.nextElementSibling.value = cantidad;
+                can.firstElementChild.nextElementSibling.setAttribute('value', cantidad);
+                buy(Number(can.firstElementChild.nextElementSibling.value - (can.firstElementChild.nextElementSibling.value) - 1));
             }
         });
     
         can.lastElementChild.addEventListener('click', () => {
             if(cantidad != can.dataset.stock) {
                 cantidad++;
-                can.firstElementChild.nextElementSibling.value = cantidad;
+                can.firstElementChild.nextElementSibling.setAttribute('value', cantidad);
+                buy(1);
             }
         });
     }
-
-    showRandomProducts();
+    await showRandomProducts();
+    buy(Number(can.firstElementChild.nextElementSibling.value));
+    await addToCart('#random-products');
 }

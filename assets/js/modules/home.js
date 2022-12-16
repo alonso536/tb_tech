@@ -71,7 +71,7 @@ const showProduct = (products, container, limit = 0) => {
         content += '<article class="col-sm-12 col-lg-6 g-3">' +
                 '<div class="card shadow-sm">' +
                 '<div class="card-header bg-primary bg-gradient bg-opacity-10">' +
-                '<h5 class="card-title text-primary mt-2">'+shortValue(products[i].nombre, 25)+'</h5>' +
+                '<h5 class="card-title text-primary mt-2">'+shortValue(products[i].nombre, 20)+'</h5>' +
                 '</div>' +
                 '<img src="../shop/uploads/images/products/'+products[i].image+'" class="card-image card-img-top" alt="'+products[i].nombre+'" />' +
                 '<ul class="list-group list-group-flush">' +
@@ -228,26 +228,84 @@ const goToProduct = async () => {
     });
 }
 
-const addToCart = async () => {
-    const links = [...document.querySelectorAll('.add-to-cart')];
-    const container = document.querySelector('#productos');
+const buy = (cantidad) => {
+    const buy = (document.querySelector('#buy') !== null) ? document.querySelector('#buy') : null;
 
-    links.forEach(link => {
-        link.addEventListener('click', async () => {
-            if(container.dataset.user == 0) {
+    if(buy !== null) {
+        const cont2 = document.querySelector('#prod');
+        buy.addEventListener('click', async () => {
+            if(cont2.dataset.user == 0) {
                 await validateSesionUser();
             } else {
                 post(ROUTES.CART.ADD, {
-                    'id': link.dataset.id,
-                    'cantidad': 1
+                    'id': buy.dataset.id,
+                    'cantidad': cantidad
                 })
                 .then(response => {
-                    let alerta = (response.codigo == -1) ? showAlert('alert-danger', response.mensaje) : showAlert('alert-success', response.mensaje);
+                    if(main.firstElementChild.tagName == 'DIV') {
+                        main.firstElementChild.remove();
+                    }
+                    window.scrollTo(0, 100);
+                    let alerta = (response.codigo == -1) ? showAlert('alert-danger', response.mensaje) : showAlert('alert-success', response.mensaje + '. ' + '<a id="go-to-cart" class="link">Ir al carrito</a>');
                     main.insertAdjacentElement('afterbegin', alerta);
+
+                    const goToCart = (document.querySelector('#go-to-cart') !== null) ? document.querySelector('#go-to-cart') : null;
+
+                    if(goToCart !== null) {
+                        goToCart.addEventListener('click', () => {
+                            changeViewGestor(ROUTES.VIEWS.USERS[1])
+                            .then(response => {
+                                main.innerHTML = response;
+                                initCart();
+                            });
+                        });
+                    }
                 });
             }
         });
-    });
+    }
+}
+
+const addToCart = async (container) => {
+    const cont = document.querySelector(container);
+
+    if(cont.dataset.id != 2) {
+        const links = [...document.querySelectorAll('.add-to-cart')];
+        
+
+        links.forEach(link => {
+            link.addEventListener('click', async () => {
+                if(cont.dataset.user == 0) {
+                    await validateSesionUser();
+                } else {
+                    post(ROUTES.CART.ADD, {
+                        'id': link.dataset.id,
+                        'cantidad': 1
+                    })
+                    .then(response => {
+                        if(main.firstElementChild.tagName == 'DIV') {
+                            main.firstElementChild.remove();
+                        }
+                        window.scrollTo(0, 100);
+                        let alerta = (response.codigo == -1) ? showAlert('alert-danger', response.mensaje) : showAlert('alert-success', response.mensaje + '. ' + '<a id="go-to-cart" class="link">Ir al carrito</a>');
+                        main.insertAdjacentElement('afterbegin', alerta);
+
+                        const goToCart = (document.querySelector('#go-to-cart') !== null) ? document.querySelector('#go-to-cart') : null;
+
+                        if(goToCart !== null) {
+                            goToCart.addEventListener('click', () => {
+                                changeViewGestor(ROUTES.VIEWS.USERS[1])
+                                .then(response => {
+                                    main.innerHTML = response;
+                                    initCart();
+                                });
+                           });
+                        }
+                    });
+                }
+            });
+        });
+    }
 }
 
 const getProducts = async () => {
@@ -257,12 +315,12 @@ const getProducts = async () => {
     const buttons = [...document.querySelectorAll('#anterior, #siguiente, .pag-link')];
 
     await goToProduct();
-    await addToCart();
+    await addToCart('#productos');
 
     buttons.forEach(button => {
         button.addEventListener('click', async () => {
             await goToProduct();
-            await addToCart();
+            await addToCart('#productos');
         });
     });
 }

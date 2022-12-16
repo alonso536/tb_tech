@@ -194,6 +194,16 @@ Route::get("/cart/obtener", function() {
     echo $controller->get()->json();
 });
 
+Route::get("/cart/total", function() {
+    $controller = new CartController();
+    echo $controller->getTotal()->json();
+});
+
+Route::post("/cart/remover", function(Request $request) {
+    $controller = new CartController();
+    echo $controller->remove($request)->json();
+});
+
 Route::get("/cart/borrar", function() {
     $controller = new CartController();
     echo $controller->delete()->json();
