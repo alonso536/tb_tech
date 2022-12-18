@@ -20,11 +20,36 @@ Route::get("/gestor/pedidos", UsuariosController::class."@orders");
 Route::get("/gestor/valoraciones", UsuariosController::class."@vals");
 Route::get("/gestor/eliminar-cuenta", UsuariosController::class."@deleteAccount");
 Route::get("/gestor/activar-cuenta", UsuariosController::class."@activeAccount");
+Route::get("/order/crear", UsuariosController::class."@createOrder");
 
 Route::post("/gestor/actualizar-productos", function(Request $request) {
     $controller = new UsuariosController();
     $datos = json_decode($request->datos);
     $controller->updateProducts((int) $datos->id);
+});
+
+Route::post("/order/ver", function(Request $request) {
+    $controller = new UsuariosController();
+    $datos = json_decode($request->datos);
+    $controller->readOrder((int) $datos->id);
+});
+
+Route::post("/orders", function(Request $request) {
+    $controller = new PedidosController();
+    $datos = json_decode($request->datos);
+    echo $controller->getOrdersByUser((int) $datos->id)->json();
+});
+
+Route::get("/order/obtener", function() {
+    $controller = new PedidosController();
+    echo $controller->getOrderDetail()->json();
+});
+
+Route::post("/order/borrar", function(Request $request) {
+    $controller = new PedidosController();
+    $datos = json_decode($request->datos);
+    $updateOrder = array('estado_id' => 3);
+    echo $controller->updateOrder($updateOrder, (int) $datos->id)->json();
 });
 
 //categorias
@@ -76,6 +101,12 @@ Route::get("/marcas", function() {
     echo $controller->getBrands()->json();
 });
 
+//regiones
+Route::get("/regiones", function() {
+    $controller = new RegionesController();
+    echo $controller->getRegs()->json();
+});
+
 //recursos
 Route::get("/resources/expresiones", Controller::class."@sendRegExp");
 
@@ -121,6 +152,11 @@ Route::post("/forms/products", function(Request $request) {
 Route::post("/forms/update-product", function(Request $request) {
     $controller = new FormController();
     echo $controller->updateProductValidate($request)->json();
+});
+
+Route::post("/forms/orders", function(Request $request) {
+    $controller = new FormController();
+    echo $controller->orderValidate($request)->json();
 });
 
 Route::post("/forms/img-user", function() {

@@ -36,6 +36,10 @@ const insertMessageError = (input) => {
         if(values.nombreProducto.length < 2) return ROUTES.MESSAGES.NAME[0];
         else if(values.nombreProducto.length > 40) return ROUTES.MESSAGES.NAME[3];
         else return ROUTES.MESSAGES.NAME[4];
+    } else if(input === 'direccion') {
+        if(values.direccion.length < 10) return ROUTES.MESSAGES.DIRECTION[0];
+        else if(values.direccion.length > 100) return ROUTES.MESSAGES.DIRECTION[1];
+        else return ROUTES.MESSAGES.DIRECTION[2];
     }
 
     return '';

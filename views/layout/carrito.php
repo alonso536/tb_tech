@@ -11,7 +11,7 @@
                 <div class="card-footer hidden">
                     <div class="row">
                         <div class="col-12 col-md-4 text-center text-md-start">
-                            <button id="create-order" class="btn btn-primary bg-gradient my-2">Realizar pedido</button>
+                            <button id="create-order" class="btn btn-primary bg-gradient my-2">Crear pedido</button>
                         </div>
                         <div class="col-12 col-md-4 text-center">
                             <button id="delete-cart" class="btn btn-danger bg-gradient my-2">Borrar carrito</button>

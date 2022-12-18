@@ -98,6 +98,17 @@ class Crud {
         return $this;
     }
 
+    public function complexQuery($query) {
+        try {
+            $this->sql = $query;
+            $st = $this->conexion->prepare($this->sql);
+            $st->execute();
+            return $st->fetchAll(PDO::FETCH_OBJ);
+        } catch(PDOException $ex) {
+            echo $ex->getTraceAsString();
+        }
+    }
+
     private function executeSt($obj = null) {
         $st = $this->conexion->prepare($this->sql);
         if($obj !== null) {

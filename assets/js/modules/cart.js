@@ -92,5 +92,14 @@ const initCart = async () => {
     await getDataCart();
     await getTotalCart();
     await removeCart();
+
+    const createOrder = document.querySelector('#create-order');
+    createOrder.addEventListener('click', async () => {
+        await changeViewGestor(ROUTES.VIEWS.ORDER.CREATE)
+        .then(response => {
+            main.innerHTML = response;
+        });
+        await formCreateOrderValidate();
+    });
     deleteCart();
 }

@@ -6,7 +6,7 @@ class PedidosModel extends Model {
     protected $region_id;
     protected $direccion;
     protected $monto;
-    protected $estado;
+    protected $estado_id;
     protected $fecha;
 
 
@@ -34,8 +34,8 @@ class PedidosModel extends Model {
         return $this -> monto;
     }
 
-    public function getEstado() {
-        return $this -> estado;
+    public function getEstadoId() {
+        return $this -> estado_id;
     }
 
     public function getFecha() {
@@ -58,8 +58,8 @@ class PedidosModel extends Model {
         $this -> monto = $monto;
     }
 
-    public function setEstado($estado) {
-        $this -> estado = $estado;
+    public function setEstadoId($estado_id) {
+        $this -> estado_id = $estado_id;
     }
 
     public function setFecha($fecha) {

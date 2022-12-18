@@ -29,6 +29,17 @@ class PedidosController extends Controller {
         return $respuesta;
     }
 
+    public function getOrdersByUser($id) {
+        $ordersModel = new PedidosModel();
+        $orders = $ordersModel->where('usuario_id', "=", $id)->get();
+        $v = (count($orders));
+
+        $respuesta = new Respuesta($v ? Mensajes::OK : Mensajes::ERR);
+        $respuesta->setDatos($orders);
+
+        return $respuesta;
+    }
+
     public function getOrder($field, $value) {
         $ordersModel = new PedidosModel();
         $order = $ordersModel->where($field, "=", $value)->first();
@@ -60,4 +71,39 @@ class PedidosController extends Controller {
 
         return $respuesta;
     }
+
+    public function getOrderDetail() {
+        $crud = new Crud();
+
+        if(isset($_SESSION['user']) && isset($_SESSION['idOrder'])) {
+            $idUser = (int) $_SESSION['user']->id;
+            $idOrder = (int) $_SESSION['idOrder'];
+        } else {
+            $idUser = 0;
+            $idOrder = 0;
+        }
+
+        if(isset($_SESSION['order'])) {
+            unset($_SESSION['order']);
+        }
+
+        $data = [];
+
+        $sql = $this->queryOrderDetail($idUser, $idOrder);
+        $data[] = $crud->complexQuery($sql);
+
+        $sql = $this->queryProductsOrderDetail($idUser, $idOrder);
+        $data[] = $crud->complexQuery($sql);
+
+        $v = (!is_null($data[0]) && !is_null($data[1])); 
+
+        $respuesta = new Respuesta($v ? Mensajes::OK : Mensajes::ERR);
+        $respuesta->setDatos($data); 
+
+        if($respuesta->getCodigo() == 1) {
+            $_SESSION['order'] = $respuesta->getDatos();
+        }
+        
+        return $respuesta;
+    }   
 }

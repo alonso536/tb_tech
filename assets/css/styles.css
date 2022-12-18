@@ -29,6 +29,14 @@ form > p {
     min-height: 600px;
 }
 
+#f-order {
+    min-height: 600px;
+}
+
+#order-detail {
+    min-height: 600px;
+}
+
 .subtitle {
     font-weight: 800;
     font-size: 2rem;

@@ -127,6 +127,19 @@ class UsuariosController extends Controller {
         echo $this->view('gestor/active-account.php');
     }
 
+    public function createOrder() {
+        echo $this->view('order/crear-pedido.php');
+    }
+
+    public function readOrder($idOrder) {
+        if(isset($_SESSION['idOrder'])) {
+            unset($_SESSION['idOrder']);
+        }
+        $_SESSION['idOrder'] = $idOrder;
+        echo $this->view('order/ver-pedido.php');
+        
+    }
+
     public function updateProducts($id) {
         if(isset($_SESSION['product'])) {
             unset($_SESSION['product']);

@@ -22,6 +22,9 @@ const ROUTES = {
         BRANDS : {
             0: 'marcas'
         },
+        REGS : {
+            0: 'regiones'
+        },
         GESTOR : {
             PROFILE : 'gestor/perfil',
             UPDATEPROFILE: 'gestor/actualizar-perfil',
@@ -33,6 +36,13 @@ const ROUTES = {
             DELETE : 'gestor/eliminar-cuenta',
             ACTIVE : 'gestor/activar-cuenta',
             UPDATEPRODUCTS : 'gestor/actualizar-productos'
+        },
+        ORDER : {
+            ALL: 'orders',
+            CREATE : 'order/crear',
+            READ : 'order/ver',
+            GET : 'order/obtener',
+            DELETE : 'order/borrar'
         }
     },
     RESOURCES: {
@@ -47,6 +57,7 @@ const ROUTES = {
         ACCOUNT: '/shop/forms/update-account',
         PRODUCTS: '/shop/forms/products',
         UPDATEPRODUCTS: '/shop/forms/update-product',
+        ORDERS: '/shop/forms/orders',
         IMAGE: {
             USER: '/shop/forms/img-user',
             DELETEUSER: '/shop/forms/delete-img-user',
@@ -92,6 +103,11 @@ const ROUTES = {
         DESCRIPTION: {
             0: 'La descripción no puede tener más de 255 caracteres',
             1: 'La descripción no puede contener símbolos'
+        },
+        DIRECTION: {
+            0: 'La dirección debe ser más larga',
+            1: 'La dirección debe ser más corta',
+            2: 'La dirección no puede contener símbolos'
         },
         WARNING: {
             0: 'Todos los campos son obligatorios',

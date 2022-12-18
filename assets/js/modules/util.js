@@ -40,6 +40,7 @@ const getValues = () => {
         password2 : (document.querySelector('#password2') !== null) ? document.querySelector('#password2').value : null,
         nombreProducto : (document.querySelector('#nombre-producto') !== null) ? document.querySelector('#nombre-producto').value : null,
         descripcion : (document.querySelector('#descripcion') !== null) ? document.querySelector('#descripcion').value : null,
+        direccion : (document.querySelector('#direccion') !== null) ? document.querySelector('#direccion').value : null,
         precio : (document.querySelector('#precio') !== null) ? document.querySelector('#precio').value : null,
         stock : (document.querySelector('#stock') !== null) ? document.querySelector('#stock').value : null,
     }

@@ -22,10 +22,29 @@ class Controller {
             'email' => '^[a-zA-Z0-9_.+-]{3,30}@[a-zA-Z0-9-]{3,30}\.[a-zA-Z0-9-.]{2,10}$',
             'password' => '^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,16}$',
             'fono' => '^\d{7,14}$',
-            'descripcion' => '^[A-Za-z0-9\s#&.,;:]{0,10000}$'
+            'descripcion' => '^[A-Za-z0-9\s#&.,;:]{0,10000}$',
+            'direccion' => '^[A-Za-z0-9\s#.,:]{10,100}$'
         );
         
         return $expresiones;
+    }
+
+    public function queryOrderDetail($idUser, $idOrder) {
+        $sql = "SELECT p.id AS 'Código del pedido', u.nombre AS 'Nombre', u.apellido AS 'Apellido',
+                u.email AS 'Email', r.nombre AS 'Región', p.direccion AS 'Dirección', e.nombre AS 'Estado', p.fecha AS 'Fecha', p.monto AS 'Monto a pagar' FROM pedidos p
+                INNER JOIN usuarios u ON p.usuario_id = u.id
+                INNER JOIN regiones r ON p.region_id = r.id
+                INNER JOIN estados e ON p.estado_id = e.id WHERE u.id = {$idUser} AND p.id = {$idOrder}";
+        
+        return $sql;
+    }
+
+    public function queryProductsOrderDetail($idUser, $idOrder) {
+        $sql = "SELECT pr.nombre AS 'Nombre del producto', lp.unidades AS 'Cantidad' FROM productos pr
+                INNER JOIN lineas_pedidos lp ON pr.id = lp.producto_id
+                INNER JOIN pedidos pe ON lp.pedido_id = pe.id WHERE pe.usuario_id = {$idUser} AND pe.id = {$idOrder}";
+
+        return $sql;
     }
 
     public function sendRegExp() {

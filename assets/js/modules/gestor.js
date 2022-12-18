@@ -80,8 +80,9 @@ const initGestor = async () => {
                     await changeViewGestor(ROUTES.VIEWS.GESTOR.ORDERS)
                     .then(response => {
                         gestorMain.innerHTML = '';
-                    gestorMain.innerHTML = `${response}`;
+                        gestorMain.innerHTML = `${response}`;
                     });
+                    gestOrders();
                     break;
                 case 6:
                     await changeViewGestor(ROUTES.VIEWS.GESTOR.VALS)

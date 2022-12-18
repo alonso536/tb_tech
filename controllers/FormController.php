@@ -185,4 +185,66 @@ class FormController {
         }
         return new Respuesta(Mensajes::ERR_UPDATE);
     }
+
+    public function orderValidate(Request $request) {
+        $controller = new PedidosController();
+        $order = json_decode($request->datos);
+
+        $expresiones = $controller->getRegExp();
+        
+        if(!isset($_SESSION['user']) || !isset($_SESSION['cart'])) {
+            return new Respuesta(Mensajes::ERR, 'No se pudo crear el pedido');
+        }
+
+        $total = (new CartController())->getTotal();
+
+        if($total->getDatos() <= 0) {
+            return new Respuesta(Mensajes::ERR, 'No se pudo crear el pedido');
+        }
+
+        if(preg_match('/'.$expresiones['direccion'].'/', $order->direccion)) {
+            $insertOrder = array(
+                'usuario_id' => (int) $_SESSION['user']->id,
+                'region_id' => (int) $order->region,
+                'direccion' => $order->direccion,
+                'monto' => (int) $total->getDatos(),
+                'estado_id' => 1,
+                'fecha' => date("Y-m-d H:i:s")
+            );
+
+            $res = $controller->insertOrder($insertOrder);
+
+            if($res->getCodigo() == -1) {
+                return new Respuesta(Mensajes::ERR, 'No se pudo crear el pedido');
+            }
+
+            $idOrder = $res->getDatos();
+            $controller2 = new LineasPedidosController();
+            $respuestas = [];
+
+            foreach($_SESSION['cart'] as $field => $value) {
+                $insertLineOrder = array(
+                    'pedido_id' => (int) $idOrder,
+                    'producto_id' => (int) $_SESSION['cart'][$field]['id'],
+                    'unidades' => (int) $_SESSION['cart'][$field]['cantidad']
+                );
+                $respuestas[] = $controller2->insertLineOrder($insertLineOrder);
+            }
+
+            foreach($respuestas as $field => $value) {
+                if($value->getCodigo() == -1) {
+                    return  new Respuesta(Mensajes::ERR);
+                }
+            }
+
+            $respuesta = new Respuesta(Mensajes::OK, 'Pedido realizado con exito');
+            $respuesta->setDatos($res->getDatos());
+
+            unset($_SESSION['cart']);
+
+            return $respuesta;
+        }
+
+        return new Respuesta(Mensajes::ERR, 'No se pudo crear el pedido');
+    }
 }

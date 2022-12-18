@@ -267,3 +267,32 @@ INSERT INTO valoraciones VALUES(null, 8, 30, 2, null, NOW());
 USE tb_tech;
 SELECT v.id, CONCAT(u.nombre, ' ', u.apellido) AS 'nombre', v.producto_id, v.nivel, v.comentario FROM valoraciones v
 INNER JOIN usuarios u WHERE v.usuario_id = u.id AND v.producto_id = 23; 
+
+USE tb_tech;
+SELECT p.id AS 'Código', u.nombre AS 'Nombre', u.apellido AS 'Apellido',
+u.email AS 'Email', r.nombre AS 'Región', p.direccion AS 'Dirección', p.monto AS 'Monto', e.nombre AS 'Estado', p.fecha AS 'Fecha' FROM pedidos p
+INNER JOIN usuarios u ON p.usuario_id = u.id
+INNER JOIN regiones r ON p.region_id = r.id
+INNER JOIN estados e ON p.estado_id = e.id WHERE u.id = 0 AND p.id = 0;
+
+USE tb_tech;
+SELECT pr.nombre AS 'Nombre del producto', lp.unidades AS 'Cantidad' FROM productos pr
+INNER JOIN lineas_pedidos lp ON pr.id = lp.producto_id
+INNER JOIN pedidos pe ON lp.pedido_id = pe.id WHERE pe.usuario_id = 27 AND pe.id = 4;
+
+USE tb_tech;
+select * from estados;
+CREATE TABLE estados(
+    id INT NOT NULL auto_increment,
+    nombre VARCHAR(15) NOT NULL,
+    CONSTRAINT pk_estados PRIMARY KEY(id)
+)ENGINE=InnoDb;
+
+INSERT INTO estados VALUES(null, 'confirmado');
+INSERT INTO estados VALUES(null, 'pagado');
+INSERT INTO estados VALUES(null, 'eliminado');
+
+USE tb_tech;
+
+ALTER TABLE pedidos CHANGE estado estado_id INT NOT NULL;
+ALTER TABLE pedidos ADD CONSTRAINT fk_estado_pedido FOREIGN KEY(estado_id) REFERENCES estados(id) ON UPDATE CASCADE ON DELETE RESTRICT;
