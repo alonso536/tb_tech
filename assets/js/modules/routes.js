@@ -43,6 +43,11 @@ const ROUTES = {
             READ : 'order/ver',
             GET : 'order/obtener',
             DELETE : 'order/borrar'
+        }, 
+        VALS : {
+            0: 'valoraciones',
+            1: 'valoraciones/usuario', 
+            2: 'valoraciones/borrar'
         }
     },
     RESOURCES: {
@@ -58,6 +63,7 @@ const ROUTES = {
         PRODUCTS: '/shop/forms/products',
         UPDATEPRODUCTS: '/shop/forms/update-product',
         ORDERS: '/shop/forms/orders',
+        VALS: '/shop/forms/vals',
         IMAGE: {
             USER: '/shop/forms/img-user',
             DELETEUSER: '/shop/forms/delete-img-user',
@@ -113,6 +119,10 @@ const ROUTES = {
             0: 'Todos los campos son obligatorios',
             1: 'Debe aceptar los términos y condiciones',
             2: 'Los campos son obligatorios'
+        },
+        REVIEW: {
+            0: 'El comentario no puede tener más de 255 caracteres',
+            1: 'El comentario no puede contener símbolos'
         }
     }
 };

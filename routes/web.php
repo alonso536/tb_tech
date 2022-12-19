@@ -71,6 +71,24 @@ Route::post("/subcategorias/categorias", function(Request $request) {
     echo $controller->getSubcategoriesForCategory((int) $datos->categoria)->json();
 });
 
+//valoraciones
+Route::get("/valoraciones", function() {
+    $controller = new ValoracionesController();
+    echo $controller->getValsByProduct()->json();
+});
+
+Route::post("/valoraciones/usuario", function(Request $request) {
+    $controller = new ValoracionesController();
+    $datos = json_decode($request->datos);
+    echo $controller->getValsByField('usuario_id', (int) $datos->id)->json();
+});
+
+Route::post("/valoraciones/borrar", function(Request $request) {
+    $controller = new ValoracionesController();
+    $datos = json_decode($request->datos);
+    echo $controller->deleteVal((int) $datos->id)->json();
+});
+
 //productos
 Route::get("/productos", function() {
     $controller = new ProductosController();
@@ -157,6 +175,11 @@ Route::post("/forms/update-product", function(Request $request) {
 Route::post("/forms/orders", function(Request $request) {
     $controller = new FormController();
     echo $controller->orderValidate($request)->json();
+});
+
+Route::post("/forms/vals", function(Request $request) {
+    $controller = new FormController();
+    echo $controller->valValidate($request)->json();
 });
 
 Route::post("/forms/img-user", function() {

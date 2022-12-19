@@ -247,4 +247,29 @@ class FormController {
 
         return new Respuesta(Mensajes::ERR, 'No se pudo crear el pedido');
     }
+
+    public function valValidate(Request $request) {
+        $controller = new ValoracionesController();
+        $val = json_decode($request->datos);
+
+        $expresiones = $controller->getRegExp();
+
+        if(isset($_SESSION['user']) && isset($_SESSION['product'])) {
+            
+            if(preg_match('/'.$expresiones['descripcion'].'/', $val->comentario)) {
+        
+                $insertVal = array(
+                    'producto_id' => (int) $_SESSION['product']->id,
+                    'usuario_id' => (int) $_SESSION['user']->id,
+                    'nivel' => (int) $val->estrellas,
+                    'comentario' => ($val->comentario == '') ? '' : trim($val->comentario),
+                    'fecha' => date("Y-m-d H:i:s")
+                );
+    
+                return $controller->insertVal($insertVal);
+            }
+            return new Respuesta(Mensajes::ERR, 'No se pudo guardar tu valoración. Intentalo de nuevo más tarde');
+        }
+        return new Respuesta(Mensajes::ERR, 'No se pudo guardar tu valoración. Intentalo de nuevo más tarde');
+    }
 }

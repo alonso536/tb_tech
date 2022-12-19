@@ -47,6 +47,13 @@ class Controller {
         return $sql;
     }
 
+    public function queryVals($idProduct) {
+        $sql = "SELECT v.id, CONCAT(u.nombre, ' ', u.apellido) AS 'nombre', v.nivel, v.comentario, v.fecha FROM valoraciones v
+                INNER JOIN usuarios u WHERE v.usuario_id = u.id AND v.producto_id = {$idProduct}";
+
+        return $sql;
+    }
+
     public function sendRegExp() {
         $respuesta = new Respuesta(Mensajes::OK);
         $respuesta->setDatos(self::getRegExp());

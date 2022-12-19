@@ -90,6 +90,7 @@ const initGestor = async () => {
                         gestorMain.innerHTML = '';
                         gestorMain.innerHTML = `${response}`;
                     });
+                    gestVals();
                     break;
                 case 7:
                     await changeViewGestor(ROUTES.VIEWS.GESTOR.DELETE)

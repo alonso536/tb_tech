@@ -63,7 +63,7 @@ const removeCart = async () => {
             })
             .then(async response => {
                 if(response.codigo == -1) {
-                    console.log(response);
+                    //console.log(response);
                 } else {
                     initCart();
                 }

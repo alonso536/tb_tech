@@ -265,8 +265,8 @@ INSERT INTO valoraciones VALUES(null, 6, 17, 5, null, NOW());
 INSERT INTO valoraciones VALUES(null, 8, 30, 2, null, NOW());
 
 USE tb_tech;
-SELECT v.id, CONCAT(u.nombre, ' ', u.apellido) AS 'nombre', v.producto_id, v.nivel, v.comentario FROM valoraciones v
-INNER JOIN usuarios u WHERE v.usuario_id = u.id AND v.producto_id = 23; 
+SELECT v.id, CONCAT(u.nombre, ' ', u.apellido) AS 'nombre', v.nivel, v.comentario FROM valoraciones v
+INNER JOIN usuarios u WHERE v.usuario_id = u.id AND v.producto_id = 10; 
 
 USE tb_tech;
 SELECT p.id AS 'Código', u.nombre AS 'Nombre', u.apellido AS 'Apellido',

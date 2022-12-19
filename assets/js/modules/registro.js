@@ -40,6 +40,12 @@ const insertMessageError = (input) => {
         if(values.direccion.length < 10) return ROUTES.MESSAGES.DIRECTION[0];
         else if(values.direccion.length > 100) return ROUTES.MESSAGES.DIRECTION[1];
         else return ROUTES.MESSAGES.DIRECTION[2];
+    } else if(input === 'descripcion') {
+        if (values.descripcion.length > 10000) return ROUTES.MESSAGES.DESCRIPTION[0];
+        else return ROUTES.MESSAGES.DESCRIPTION[1];
+    } else if(input === 'comentario') {
+        if (values.comentario.length > 10000) return ROUTES.MESSAGES.REVIEW[0];
+        else return ROUTES.MESSAGES.REVIEW[1];
     }
 
     return '';

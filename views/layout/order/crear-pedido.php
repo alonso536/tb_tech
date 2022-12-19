@@ -27,7 +27,7 @@
                                 </tbody>
                             </table>
                     <?php else : ?>
-                        <h3 class="card-title text-center subtitle">No ha carrito</h3>
+                        <h3 class="card-title text-center subtitle">No hay carrito</h3>
                     <?php endif; ?>
                 </div>
             </div>

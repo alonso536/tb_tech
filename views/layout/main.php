@@ -77,6 +77,7 @@
     <script src="<?= Url::base().'/assets/js/modules/gestor/update-products.js' ?>"></script>
     <script src="<?= Url::base().'/assets/js/modules/gestor/products.js' ?>"></script>
     <script src="<?= Url::base().'/assets/js/modules/gestor/orders.js' ?>"></script>
+    <script src="<?= Url::base().'/assets/js/modules/gestor/vals.js' ?>"></script>
     <script src="<?= Url::base().'/assets/js/modules/gestor/update-account.js' ?>"></script>
     <script src="<?= Url::base().'/assets/js/modules/gestor.js' ?>"></script>
     <script src="<?= Url::base().'/assets/js/modules/order/create-order.js' ?>"></script>

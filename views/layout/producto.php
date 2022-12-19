@@ -66,8 +66,34 @@
                                 <h2 class="text-center py-3">Descripción</h2>
                                 <p class="description-paragraph"><?= $_SESSION['product']->descripcion ?></p>
                             </div>
-                            <div class="hidden">
+                            <div id="vals" class="hidden">
                                 <h2 class="text-center py-3">Valoraciones</h2>
+                                <?php if (isset($_SESSION['user']) && $_SESSION['user']->permiso_id == 1) : ?>
+                                <form id="form-val" method="POST" action="">
+                                    <div class="form-group mx-3 my-2">
+                                        <select id="estrellas" name="estrellas" class="form-select py-2">
+                                            <option value="0" disabled selected>Estrellas</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </div>
+                                    <p class="alert alert-danger mx-3 my-2" role="alert">
+                                    </p>
+                                    <div class="form-group mx-3 my-2">
+                                        <textarea id="comentario" name="comentario" class="form-control py-2" placeholder="Escribe un comentario a tu valoración"></textarea>
+                                    </div>
+                                    <p class="alert alert-danger mx-3 my-2" role="alert">
+                                    </p>
+                                    <p class="alert alert-danger mx-3 my-2" role="alert">
+                                    </p>
+                                    <div class="form-group mx-3 my-2 d-flex justify-content-start">
+                                        <input type="submit" class="btn btn-primary bg-gradient" value="Publicar valoración">
+                                    </div>
+                                </form>
+                                <?php endif; ?>
                             </div>
                         </div>
                         <div id="random-products" data-user="<?= $_SESSION['user']->permiso_id ?>" class="row mt-3">
