@@ -71,7 +71,7 @@
                             </div>
                         </div>
                         <div id="random-products" data-user="<?= $_SESSION['user']->permiso_id ?>" class="row mt-3">
-                            <h2 class="text-center py-3">Productos relacionados</h2>
+                          <h2 class="text-center py-3">Productos relacionados</h2>
                         </div>
                     <?php else : ?>
                         <h2 class="text-center text-primary mt-2">No se ha encontrado el producto</h2>

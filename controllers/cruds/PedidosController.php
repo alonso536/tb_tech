@@ -101,7 +101,7 @@ class PedidosController extends Controller {
         $respuesta->setDatos($data); 
 
         if($respuesta->getCodigo() == 1) {
-            $_SESSION['order'] = $respuesta->getDatos();
+            $_SESSION['order'] = $data[1];
         }
         
         return $respuesta;

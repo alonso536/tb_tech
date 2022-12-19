@@ -196,6 +196,8 @@ const showProducts = async () => {
                     window.scrollTo(0, 200);
                     container.nextElementSibling.style.opacity = '1';
                     paginator(response.datos);
+                    goToProduct();
+                    addToCart('#productos');
                 }
             });
         });

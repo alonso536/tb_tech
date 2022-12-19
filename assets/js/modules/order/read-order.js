@@ -10,21 +10,13 @@ const showDetail = async (details) => {
         i++;
     }
 
-    let contentHead = '<tr>';
-    let contentBody = '';
-
-    for(let product in details[1][0]) {
-        contentHead += `<td><b>${product}</b></td>`;
-    }
-    contentHead += '</tr>';
+    let content = '';
 
     for(let i = 0; i < details[1].length; i++) {
-        contentBody += `<tr><td>${details[1][i]['Nombre del producto']}</td>`;
-        contentBody += `<td>${details[1][i].Cantidad}</td></tr>`;
+        content += `<tr><td>${details[1][i].producto}</td>`;
+        content += `<td>${details[1][i].cantidad}</td></tr>`;
     }
-
-    productsDetail.firstElementChild.innerHTML = contentHead;
-    productsDetail.lastElementChild.innerHTML = contentBody;
+    productsDetail.lastElementChild.innerHTML = content;
 }
 
 const getOrderDetail = async () => {
@@ -36,7 +28,12 @@ const getOrderDetail = async () => {
             orderDetail.firstElementChild.nextElementSibling.remove();
             orderDetail.insertAdjacentHTML('beforeend', '<p class="text-center">Ocurrió un error al mostrar tu pedido. Intentalo de nuevo más tarde.</p>');
         } else {
+            orderDetail.dataset.status = response.datos[1][0].estado;
+
             await showDetail(response.datos);
+            if(orderDetail.dataset.status == 2) {
+                orderDetail.lastElementChild.remove();
+            }
         }
     });
 }

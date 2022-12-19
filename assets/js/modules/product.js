@@ -91,28 +91,34 @@ const product = async () => {
     imageProduct();
     showContent();
 
-    const can = (document.querySelector('#inp-cantidad') !== null) ? document.querySelector('#inp-cantidad') : null;
+    const rp = document.querySelector('#random-products');
 
-    if(can != null) {
-        let cantidad = can.firstElementChild.nextElementSibling.value;
+    if(rp.dataset.user != 2) {
+        const can = (document.querySelector('#inp-cantidad') !== null) ? document.querySelector('#inp-cantidad') : null;
 
-        can.firstElementChild.addEventListener('click', () => {
-            if(cantidad != 1) {
-                cantidad--;
-                can.firstElementChild.nextElementSibling.setAttribute('value', cantidad);
-                buy(Number(can.firstElementChild.nextElementSibling.value - (can.firstElementChild.nextElementSibling.value) - 1));
-            }
-        });
+        if(can != null) {
+            let cantidad = can.firstElementChild.nextElementSibling.value;
+
+            can.firstElementChild.addEventListener('click', () => {
+                if(cantidad != 1) {
+                    cantidad--;
+                    can.firstElementChild.nextElementSibling.setAttribute('value', cantidad);
+                    buy(Number(can.firstElementChild.nextElementSibling.value - (can.firstElementChild.nextElementSibling.value) - 1));
+                }
+            });
     
-        can.lastElementChild.addEventListener('click', () => {
-            if(cantidad != can.dataset.stock) {
-                cantidad++;
-                can.firstElementChild.nextElementSibling.setAttribute('value', cantidad);
-                buy(1);
-            }
-        });
+            can.lastElementChild.addEventListener('click', () => {
+                if(cantidad != can.dataset.stock) {
+                    cantidad++;
+                    can.firstElementChild.nextElementSibling.setAttribute('value', cantidad);
+                    buy(1);
+                }
+            });
+        }
+        await showRandomProducts();
+        buy(Number(can.firstElementChild.nextElementSibling.value));
+        await addToCart('#random-products');
     }
+
     await showRandomProducts();
-    buy(Number(can.firstElementChild.nextElementSibling.value));
-    await addToCart('#random-products');
 }

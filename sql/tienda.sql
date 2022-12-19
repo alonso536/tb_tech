@@ -276,9 +276,9 @@ INNER JOIN regiones r ON p.region_id = r.id
 INNER JOIN estados e ON p.estado_id = e.id WHERE u.id = 0 AND p.id = 0;
 
 USE tb_tech;
-SELECT pr.nombre AS 'Nombre del producto', lp.unidades AS 'Cantidad' FROM productos pr
+SELECT pr.id, pr.nombre AS 'producto', pe.estado_id AS 'estado', lp.unidades AS 'cantidad' FROM productos pr
 INNER JOIN lineas_pedidos lp ON pr.id = lp.producto_id
-INNER JOIN pedidos pe ON lp.pedido_id = pe.id WHERE pe.usuario_id = 27 AND pe.id = 4;
+INNER JOIN pedidos pe ON lp.pedido_id = pe.id WHERE pe.usuario_id = 27 AND pe.id = 1;
 
 USE tb_tech;
 select * from estados;

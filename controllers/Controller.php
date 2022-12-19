@@ -40,7 +40,7 @@ class Controller {
     }
 
     public function queryProductsOrderDetail($idUser, $idOrder) {
-        $sql = "SELECT pr.nombre AS 'Nombre del producto', lp.unidades AS 'Cantidad' FROM productos pr
+        $sql = "SELECT pe.id AS 'codigo', pr.nombre AS 'producto', pe.estado_id AS 'estado', lp.unidades AS 'cantidad' FROM productos pr
                 INNER JOIN lineas_pedidos lp ON pr.id = lp.producto_id
                 INNER JOIN pedidos pe ON lp.pedido_id = pe.id WHERE pe.usuario_id = {$idUser} AND pe.id = {$idOrder}";
 
