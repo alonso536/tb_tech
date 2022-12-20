@@ -42,6 +42,7 @@ const ROUTES = {
             CREATE : 'order/crear',
             READ : 'order/ver',
             GET : 'order/obtener',
+            PAY : 'order/pagar',
             DELETE : 'order/borrar'
         }, 
         VALS : {

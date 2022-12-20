@@ -66,16 +66,16 @@
                 <tbody>
                     <tr>
                         <th scope="row">Pedidos realizados</th>
-                        <td class="text-end">X</td>
+                        <td class="text-end">0</td>
                     </tr>
                     <tr>
-                        <th scope="row">Pedidos completados</th>
-                        <td class="text-end">X</td>
+                        <th scope="row">Pedidos pagados</th>
+                        <td class="text-end">0</td>
 
                     </tr>
                     <tr>
-                        <th scope="row">Descuentos</th>
-                        <td class="text-end">X</td>
+                        <th scope="row">Valoraciones realizadas</th>
+                        <td class="text-end">0</td>
                     </tr>
                 </tbody>
             </table>

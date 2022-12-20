@@ -207,6 +207,7 @@ const showProducts = async () => {
 const validateSesionUser = async () => {
     await changeViewGestor(ROUTES.VIEWS[1])
     .then(response => {
+        window.scrollTo(0, 0);
         main.innerHTML = '';
         main.innerHTML = `${response}`;
         formLoginValidate();

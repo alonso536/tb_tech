@@ -13,10 +13,29 @@ const showDetail = async (details) => {
     let content = '';
 
     for(let i = 0; i < details[1].length; i++) {
-        content += `<tr><td>${details[1][i].producto}</td>`;
+        content += `<tr><td>${details[1][i].producto_id}</td>`;
+        content += `<td>${details[1][i].producto}</td>`;
         content += `<td>${details[1][i].cantidad}</td></tr>`;
     }
     productsDetail.lastElementChild.innerHTML = content;
+}
+
+const payOrder = () => {
+    const payOrder = (document.querySelector('#pay-order') !== null) ? document.querySelector('#pay-order') : null;
+
+    if(payOrder !== null) {
+        payOrder.addEventListener('click', () => {
+            get(ROUTES.VIEWS.ORDER.PAY)
+            .then(response => {
+                window.scrollTo(0, 0);
+                let alerta = (response.codigo == -1) ? showAlert('alert-danger', response.mensaje) : showAlert('alert-success', response.mensaje);
+                main.insertAdjacentElement('afterbegin', alerta);
+                setTimeout(() => {
+                    location.reload();
+                }, 4000)
+            });
+        });
+    }
 }
 
 const getOrderDetail = async () => {
@@ -36,4 +55,6 @@ const getOrderDetail = async () => {
             }
         }
     });
+
+    payOrder();
 }

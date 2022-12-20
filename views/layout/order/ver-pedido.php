@@ -59,6 +59,7 @@
                         <table id="products-detail" class="table table-bordered my-3">
                             <thead>
                                 <tr>
+                                    <th>Código del producto</th>
                                     <th>Nombre del producto</th>
                                     <th>Cantidad</th>
                                 </tr>

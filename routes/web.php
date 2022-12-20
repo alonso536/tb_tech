@@ -45,6 +45,11 @@ Route::get("/order/obtener", function() {
     echo $controller->getOrderDetail()->json();
 });
 
+Route::get("/order/pagar", function() {
+    $controller = new PedidosController();
+    echo $controller->payOrder()->json();
+});
+
 Route::post("/order/borrar", function(Request $request) {
     $controller = new PedidosController();
     $datos = json_decode($request->datos);

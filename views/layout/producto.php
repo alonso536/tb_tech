@@ -61,7 +61,7 @@
                             <input type="radio" class="btn-check" name="btnradio" id="valoraciones" autocomplete="off">
                             <label class="btn btn-outline-primary bg-gradient" for="valoraciones">Valoraciones</label>
                         </div>
-                        <div id="content" class="text-start p-3 border-bottom border-secondary mx-2">
+                        <div id="content" class="text-start p-lg-3 p-md-3 px-0 border-bottom border-secondary mx-2">
                             <div>
                                 <h2 class="text-center py-3">Descripción</h2>
                                 <p class="description-paragraph"><?= $_SESSION['product']->descripcion ?></p>
@@ -70,7 +70,7 @@
                                 <h2 class="text-center py-3">Valoraciones</h2>
                                 <?php if (isset($_SESSION['user']) && $_SESSION['user']->permiso_id == 1) : ?>
                                 <form id="form-val" method="POST" action="">
-                                    <div class="form-group mx-3 my-2">
+                                    <div class="form-group mx-lg-3 mx-md-3 mx-0 my-2">
                                         <select id="estrellas" name="estrellas" class="form-select py-2">
                                             <option value="0" disabled selected>Estrellas</option>
                                             <option value="1">1</option>
@@ -80,16 +80,16 @@
                                             <option value="5">5</option>
                                         </select>
                                     </div>
-                                    <p class="alert alert-danger mx-3 my-2" role="alert">
+                                    <p class="alert alert-danger mx-lg-3 mx-md-3 mx-0 my-2" role="alert">
                                     </p>
-                                    <div class="form-group mx-3 my-2">
+                                    <div class="form-group mx-lg-3 mx-md-3 mx-0 my-2">
                                         <textarea id="comentario" name="comentario" class="form-control py-2" placeholder="Escribe un comentario a tu valoración"></textarea>
                                     </div>
-                                    <p class="alert alert-danger mx-3 my-2" role="alert">
+                                    <p class="alert alert-danger mx-lg-3 mx-md-3 mx-0 my-2" role="alert">
                                     </p>
-                                    <p class="alert alert-danger mx-3 my-2" role="alert">
+                                    <p class="alert alert-danger mx-lg-3 mx-md-3 mx-0 my-2" role="alert">
                                     </p>
-                                    <div class="form-group mx-3 my-2 d-flex justify-content-start">
+                                    <div class="form-group mx-lg-3 mx-md-3 mx-0 my-2 d-flex justify-content-start">
                                         <input type="submit" class="btn btn-primary bg-gradient" value="Publicar valoración">
                                     </div>
                                 </form>

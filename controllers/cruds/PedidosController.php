@@ -105,5 +105,48 @@ class PedidosController extends Controller {
         }
         
         return $respuesta;
-    }   
+    } 
+    
+    public function payOrder() {
+        if(!isset($_SESSION['order'])) {
+            return new Respuesta(Mensajes::ERR, 'No se pudo procesar el pago. Intentalo de nuevo más tarde');
+        }
+
+        $order = $this->getOrder('id', (int) $_SESSION['order'][0]->codigo);
+
+        if($order->getCodigo() == -1) {
+            return new Respuesta(Mensajes::ERR, 'No se pudo procesar el pago. Intentalo de nuevo más tarde');
+        }
+
+        $productController = new ProductosController();
+
+        foreach($_SESSION['order'] as $field => $value) {
+            $product = $productController->getProduct('id', (int) $_SESSION['order'][$field]->producto_id);
+            if($product->getCodigo() == -1) {
+                return new Respuesta(Mensajes::ERR, 'No se pudo procesar el pago. Intentalo de nuevo más tarde');
+            }
+            
+            $stock = ($product->getDatos()->stock > (int) $_SESSION['order'][$field]->cantidad) ? $product->getDatos()->stock - (int) $_SESSION['order'][$field]->cantidad : 0;
+
+            $updateProduct = array(
+                'stock' => $stock
+            );
+
+            $res = $productController->updateProduct($updateProduct, (int) $_SESSION['order'][$field]->producto_id);
+            if($res->getCodigo() == -1) {
+                return new Respuesta(Mensajes::ERR);
+            }
+        }
+
+        $updateOrder = array(
+            'estado_id' => 2
+        );
+
+        $res = $this->updateOrder($updateOrder, $order->getDatos()->id);
+        if($res->getCodigo() == 1) {
+            $res->setMensaje('El pago se ha realizado con exito');
+        }
+
+        return $res;
+    }
 }

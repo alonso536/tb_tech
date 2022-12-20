@@ -17,7 +17,7 @@ const renderVals = async (vals, container, min, max) => {
     for(let i = min; i < max; i++) {
 
         content += `<article class="my-4">
-                    <div class="mx-3 px-2">
+                    <div class="mx-lg-3 mx-md-3 mx-0 px-2">
                     <b>${vals[i].nombre}</b>`
         if(vals[i].nivel == 1) {
             content += `<p>${vals[i].nivel} estrella</p>`;
@@ -26,7 +26,7 @@ const renderVals = async (vals, container, min, max) => {
         }
         
         content += `</div>
-                    <div class="card-body border border-secondary border-opacity-50 rounded mx-3 p-3">`;
+                    <div class="card-body border border-secondary border-opacity-50 rounded mx-lg-3 mx-md-3 mx-0 p-3">`;
         if(vals[i].comentario.length >= 90) {
             content += `<p>${shortValue(vals[i].comentario, 90)}</p>
                         <a data-id="${i}" class="show-all-val link">Ver más</a>
