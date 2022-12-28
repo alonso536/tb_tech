@@ -95,8 +95,11 @@ const initCart = async () => {
 
     const createOrder = document.querySelector('#create-order');
     createOrder.addEventListener('click', async () => {
+        localStorage.removeItem('idProducto');
+        localStorage.setItem('view', 10);
         await changeViewGestor(ROUTES.VIEWS.ORDER.CREATE)
         .then(response => {
+            main.dataset.view = 10
             main.innerHTML = response;
         });
         await formCreateOrderValidate();

@@ -59,7 +59,8 @@ CREATE TABLE usuarios(
     email VARCHAR(100) NOT NULL,
     password VARCHAR(255) NOT NULL,
     fono VARCHAR(15) NOT NULL,
-    image VARCHAR(255),
+    image VARCHAR(255)
+    activo TINYINT(1) NOT NULL,
     CONSTRAINT pk_usuarios PRIMARY KEY(id),
     CONSTRAINT uq_email UNIQUE(email),
     CONSTRAINT fk_permiso FOREIGN KEY(permiso_id) REFERENCES permisos(id) ON UPDATE CASCADE ON DELETE RESTRICT
@@ -209,4 +210,4 @@ INSERT INTO estados VALUES(null, 'Confirmado');
 INSERT INTO estados VALUES(null, 'Pagado');
 INSERT INTO estados VALUES(null, 'Eliminado');
 
-INSERT INTO usuarios VALUES(null, 2, 'Admin', 'Admin', 'admin@thebasement.cl', '123456', '0000', null);
+INSERT INTO usuarios VALUES(null, 2, 'Admin', 'Admin', 'admin@thebasement.cl', '123456', '0000', null, 0);

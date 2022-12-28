@@ -11,6 +11,8 @@ const enableLinks = () => {
 
             main.dataset.view = i + 2;
 
+            localStorage.setItem('view', Number(main.dataset.view));
+
             switch(Number(main.dataset.view)) {
                 case 2:
                     formRegisterValidate();
@@ -38,6 +40,7 @@ const formLoginValidate = () => {
         })
         .then(response => {
             if(response.codigo == 1) {
+                localStorage.setItem('view', 5);
                 location.reload();
             } else {
                 alerta.style.cssText = 'display: block';

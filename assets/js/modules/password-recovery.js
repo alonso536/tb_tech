@@ -119,7 +119,7 @@ const formPasswordRecoveryValidate = () => {
                 .then(response => {
                     let alerta = (response.codigo == -1) ? showAlert('alert-danger', response.mensaje) : showAlert('alert-success', response.mensaje);
                     main.insertAdjacentElement('afterbegin', alerta);
-                    console.log(response);
+                    localStorage.setItem('view', 0);
                     form2.reset();
                     setTimeout(() => {
                         location.reload();

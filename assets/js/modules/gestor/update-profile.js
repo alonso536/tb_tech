@@ -52,6 +52,7 @@ const formUpdateProfile = () => {
                 let alerta = (response.codigo == -1) ? showAlert('alert-danger', response.mensaje) : showAlert('alert-success', response.mensaje);
                 main.insertAdjacentElement('afterbegin', alerta);
                 form.reset();
+                localStorage.setItem('view', 0);
                 setTimeout(() => {
                     location.reload();
                 }, 1000);

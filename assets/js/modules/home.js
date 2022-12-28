@@ -219,11 +219,13 @@ const goToProduct = async () => {
 
     links.forEach(link => {
         link.addEventListener('click', () => {
+            localStorage.setItem('idProducto', link.dataset.id);
             changeViewPost(ROUTES.VIEWS.PRODUCTS[2], {
                 'id': link.dataset.id
             }).then(response => {
                 main.innerHTML = response;
-                main.dataset.view = 3;
+                main.dataset.view = 4;
+                localStorage.setItem('view', 4);
                 window.scrollTo(0, 100);
                 product();
             });
@@ -258,6 +260,7 @@ const buy = (cantidad) => {
                         goToCart.addEventListener('click', () => {
                             changeViewGestor(ROUTES.VIEWS.USERS[1])
                             .then(response => {
+                                localStorage.setItem('view', 6);
                                 main.innerHTML = response;
                                 initCart();
                             });
@@ -278,6 +281,7 @@ const addToCart = async (container) => {
 
         links.forEach(link => {
             link.addEventListener('click', async () => {
+                localStorage.setItem('view', Number(main.dataset.view));
                 if(cont.dataset.user == 0) {
                     await validateSesionUser();
                 } else {
@@ -299,6 +303,7 @@ const addToCart = async (container) => {
                             goToCart.addEventListener('click', () => {
                                 changeViewGestor(ROUTES.VIEWS.USERS[1])
                                 .then(response => {
+                                    localStorage.setItem('view', 6);
                                     main.innerHTML = response;
                                     initCart();
                                 });

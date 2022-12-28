@@ -75,6 +75,8 @@ const formCreateOrderValidate = async () => {
                             'id': goToOrder.dataset.id
                         })
                         .then(response => {
+                            localStorage.setItem('idOrder', goToOrder.dataset.id);
+                            localStorage.setItem('view', 11);
                             main.innerHTML = response;
                         });
                         getOrderDetail();

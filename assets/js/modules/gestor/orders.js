@@ -50,6 +50,8 @@ const gestOrders = async () => {
                 'id' : showOrder.dataset.id
             })
             .then(response => {
+                localStorage.setItem('idOrder', showOrder.dataset.id);
+                localStorage.setItem('view', 11);
                 main.innerHTML = response;
             });
             await getOrderDetail();

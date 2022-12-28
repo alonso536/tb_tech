@@ -30,6 +30,8 @@ const payOrder = () => {
                 window.scrollTo(0, 0);
                 let alerta = (response.codigo == -1) ? showAlert('alert-danger', response.mensaje) : showAlert('alert-success', response.mensaje);
                 main.insertAdjacentElement('afterbegin', alerta);
+                localStorage.removeItem('idOrder');
+                localStorage.setItem('view', 5);
                 setTimeout(() => {
                     location.reload();
                 }, 4000)

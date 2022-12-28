@@ -144,6 +144,7 @@ class PedidosController extends Controller {
 
         $res = $this->updateOrder($updateOrder, $order->getDatos()->id);
         if($res->getCodigo() == 1) {
+            unset($_SESSION['order']);
             $res->setMensaje('El pago se ha realizado con exito');
         }
 

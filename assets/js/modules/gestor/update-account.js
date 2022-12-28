@@ -9,6 +9,7 @@ const activeAccount = () => {
             if(response.codigo == -1) {
                 console.log(response);
             } else {
+                localStorage.setItem('view', 0);
                 location.reload();
             }
         });
@@ -26,6 +27,7 @@ const desactAccount = () => {
             if(response.codigo == -1) {
                 console.log(response);
             } else {
+                localStorage.setItem('view', 0);
                 location.reload();
             }
         });
